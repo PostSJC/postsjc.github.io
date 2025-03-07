@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tempo - POSTNET</title>
+    <link rel="stylesheet" href="./styles/index.css"></link>
+</head>
+<body onload="CloseModal()"> 
+    <div class="navbar">
+        <div class="post-icon"></div>
+        <a class="btn-rearrange" onclick="OpenModal()"></a>
+    </div>
+    <div class="body-wrapper">
+        <!-- --------------------------------------------- NET 01 -------------------------------------------- -->
+        <div class="component-net">
+            <div class="card-nav">
+                <div class="help"></div>
+                <div class="pause"></div> 
+            </div>
+            <div class="component-net--name">
+                NET 01 
+            </div>
+            <div class="icon-computer"></div>
+            <b>Entrada</b>
+            <div class="component-net--timer" id="StartHourN1">
+                <span id="i_hour_net01">00</span>:<span id="i_minute_net01">00</span>:<span id="i_second_net01">00</span> 
+            </div>
+            <div class="component-net--now">
+                <span id="f_hour_net01">00</span>:<span id="f_minute_net01">00</span>:<span id="f_second_net01">00</span>       
+            </div>
+            <div class="divider"></div>
+            <div class="component-net--services">
+                <div class="row">
+                    <div class="col">
+                        Impressão PB
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="PBN1remove()">-</button>
+                        <div class="services-qtd" id="PBN1">0</div>
+                        <button class="services-button" onclick="PBN1add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Impressão Color
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ColorN1remove()">-</button>
+                        <div class="services-qtd" id="ColorN1">0</div>
+                        <button class="services-button" onclick="ColorN1add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Scanner
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ScanN1remove()">-</button>
+                        <div class="services-qtd" id="ScanN1">0</div>
+                        <button class="services-button" onclick="ScanN1add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Valor
+                    </div>
+                    <div class="col">
+                        <input type="text" id="input_value" name="input_value" class="services-value" />
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <button class="button-start start" id="btn-start-n1" onclick="StartN1()">Começar</button>
+            <button class="button-start stop" id="btn-stop-n1" onclick="StopN1()">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n1" onclick="ResetN1()">Resetar</button>
+            <div class="final-value" id="final-value-N1">R$ 0,00</div>
+        </div>
+        <!-- --------------------------------------------- NET 02 -------------------------------------------- -->
+        <div class="component-net">
+            <div class="card-nav">
+                <div class="help"></div>
+                <div class="pause"></div> 
+            </div>
+            <div class="component-net--name">
+                NET 02 
+            </div>
+            <div class="icon-computer"></div>
+            <b>Entrada</b>
+            <div class="component-net--timer" id="StartHourN2">
+                <span id="i_hour_net02">00</span>:<span id="i_minute_net02">00</span>:<span id="i_second_net02">00</span> 
+            </div>
+            <div class="component-net--now">
+                <span id="f_hour_net02">00</span>:<span id="f_minute_net02">00</span>:<span id="f_second_net02">00</span>       
+            </div>
+            <div class="divider"></div>
+            <div class="component-net--services">
+                <div class="row">
+                    <div class="col">
+                        Impressão PB
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="PBN2remove()">-</button>
+                        <div class="services-qtd" id="PBN2">0</div>
+                        <button class="services-button" onclick="PBN2add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Impressão Color
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ColorN2remove()">-</button>
+                        <div class="services-qtd" id="ColorN2">0</div>
+                        <button class="services-button" onclick="ColorN2add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Scanner
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ScanN2remove()">-</button>
+                        <div class="services-qtd" id="ScanN2">0</div>
+                        <button class="services-button" onclick="ScanN2add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Valor
+                    </div>
+                    <div class="col">
+                        <input type="text" id="input_value" name="input_value" class="services-value" />
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <button class="button-start start" id="btn-start-n2" onclick="StartN2()">Começar</button>
+            <button class="button-start stop" id="btn-stop-n2" onclick="StopN2()">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n2" onclick="ResetN2()">Resetar</button>
+            <div class="final-value" id="final-value-N2">R$ 0,00</div>
+        </div>
+        <!-- --------------------------------------------- NET 03 -------------------------------------------- -->  
+        <div class="component-net">
+            <div class="card-nav">
+                <div class="help"></div>
+                <div class="pause"></div> 
+            </div>
+            <div class="component-net--name">
+                NET 03
+            </div>
+            <div class="icon-computer"></div>
+            <b>Entrada</b>
+            <div class="component-net--timer" id="StartHourN3">
+                <span id="i_hour_net03">00</span>:<span id="i_minute_net03">00</span>:<span id="i_second_net03">00</span> 
+            </div>
+            <div class="component-net--now">
+                <span id="f_hour_net03">00</span>:<span id="f_minute_net03">00</span>:<span id="f_second_net03">00</span>       
+            </div>
+            <div class="divider"></div>
+            <div class="component-net--services">
+                <div class="row">
+                    <div class="col">
+                        Impressão PB
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="PBN3remove()">-</button>
+                        <div class="services-qtd" id="PBN3">0</div>
+                        <button class="services-button" onclick="PBN3add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Impressão Color
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ColorN3remove()">-</button>
+                        <div class="services-qtd" id="ColorN3">0</div>
+                        <button class="services-button" onclick="ColorN3add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Scanner
+                    </div>
+                    <div class="col">
+                        <button class="services-button" onclick="ScanN3remove()">-</button>
+                        <div class="services-qtd" id="ScanN3">0</div>
+                        <button class="services-button" onclick="ScanN3add()">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Valor
+                    </div>
+                    <div class="col">
+                        <input type="text" id="input_value" name="input_value" class="services-value" />
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <button class="button-start start" id="btn-start-n3" onclick="StartN3()">Começar</button>
+            <button class="button-start stop" id="btn-stop-n3" onclick="StopN3()">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n3" onclick="ResetN3()">Resetar</button>
+            <div class="final-value" id="final-value-N3">R$ 0,00</div>
+        </div>
+    <!-- --------------------------------------------- FIM NETS------------------------------------ -->
+    </div>
+    <div class="modal" >
+        <div class="modal-backdrop" id="modal">
+            <div class="modal-content">
+                <!-- <form action="/action_page.php" method="get"> -->
+                    <div class="modal-row">
+                        <span>Troca de computadores</span>
+                    </div>
+                    <div class="modal-row modal-nets">
+                        <div class="modal-col">
+                                <div class="net-block">
+                                    De:
+                                </div>
+                                <div class="net-block">
+                                    <input type="radio" id="from-net01" value="from-net01" name="From">
+                                    <label for="from-net01" id="from-net01-label">NET 01</label>
+                                </div>
+                                <div class="net-block">
+                                    <input type="radio" id="from-net02" value="from-net01" name="From">
+                                    <label for="from-net02" id="from-net02-label">NET 02</label>
+                                </div>
+                                <div class="net-block">
+                                    <input type="radio" id="from-net03" value="from-net01" name="From">
+                                    <label for="from-net03" id="from-net03-label">NET 03</label>
+                                </div>                            
+                                <!-- <input type="submit" value="Submit"> -->
+                        </div>
+                        <div class="rearrange-icon"></div>
+                        <div class="modal-col">
+                            <div class="net-block">
+                                Para:
+                            </div>
+                            <div class="net-block">
+                                <input type="radio" id="to-net01" value="to-net01" name="To">
+                                <label for="to-net01" id="to-net01-label">NET 01</label>
+                            </div>
+                            <div class="net-block">
+                                <input type="radio" id="to-net02" value="to-net02" name="To">
+                                <label for="to-net02" id="to-net02-label">NET 02</label>
+                            </div>
+                            <div class="net-block">
+                                <input type="radio" id="to-net03" value="to-net03" name="To">
+                                <label for="to-net03" id="to-net03-label">NET 03</label>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="modal-row">
+                        <div class="modal-col">
+                            <button class="button-modal" id="botao-temporario" onclick="CloseModal()" class="fecharModal">
+                                Cancelar
+                            </button>
+                        </div>
+                        <div class="modal-col">
+                            <button class="button-modal" id="botao-temporario" onclick="SubmitModal()" class="fecharModal">
+                                Trocar nets
+                            </button>
+                        </div>
+                    </div>
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+    <script src="./js/ControladorNets.js"></script>
+    <script src="./js/Global.js"></script>
+    <SCRIPt>
+        // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
+        window.onbeforeunload = function(e) {
+            return 'Tem a certeza que quer fechar a janela?';
+        };
+    </SCRIPt>
+</body>
+</html>
+
+
+<!-- Falta
+Mascara Relogio 
+Mascara Relogio Final 
+Mascara Valor 
+Funcionamento Valor 
+Mascara Valor Final
+Trocar posção dos nets 
+Help registro
+Favicon
+-->
