@@ -120,6 +120,8 @@ function StopN1() {
   StatusN1 = 2;    
   document.getElementById("btn-stop-n1").style.visibility = "hidden";
   document.getElementById("btn-reset-n1").style.visibility = "visible";
+
+  toastr.success('Tempo do NET01 - Encerrado');
 }
 
 function ResetN1(){
@@ -236,6 +238,9 @@ function StopN2() {
   StatusN2 = 2;    
   document.getElementById("btn-stop-n2").style.visibility = "hidden";
   document.getElementById("btn-reset-n2").style.visibility = "visible";
+
+  
+  toastr.success('Tempo do NET02 - Encerrado');
 }
 
 function ResetN2(){
@@ -351,6 +356,8 @@ function StopN3() {
   StatusN3 = 2;    
   document.getElementById("btn-stop-n3").style.visibility = "hidden";
   document.getElementById("btn-reset-n3").style.visibility = "visible";
+  
+  toastr.success('Tempo do NET03 - Encerrado');
 }
 
 function ResetN3(){
@@ -642,6 +649,7 @@ function SubmitModal(){
     }
     ResetN3();
   }
+  toastr.info('Troca efetuada com sucesso');
   CloseModal();
 }
 
@@ -695,6 +703,13 @@ function RefreshModal(){
     document.getElementById("to-net03").disabled=false;
   }
 }
+
+
+
+
+
+
+
 
 
 

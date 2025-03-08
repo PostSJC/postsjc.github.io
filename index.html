@@ -277,11 +277,57 @@
 
 
     <script src="./js/ControladorNets.js"></script>
-    <script>
+    <!-- <SCRIPt>
+        // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
         window.onbeforeunload = function(e) {
             return 'Tem a certeza que quer fechar a janela?';
         };
-    </SCRIPt>
+    </SCRIPt> -->
+
+
+
+
+
+
+
+
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			toastr.options = {
+				'closeButton': false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+			}
+		});
+
+		$('#image').click(function(event) {
+			toastr.options.progressBar = true,
+			toastr.info('<img src="https://image.flaticon.com/icons/svg/34/34579.svg" style="width:150px;">', 'Toast Image')
+		});
+
+        $('#position').click(function(event) {
+			var pos = $('input[name=position]:checked', '#positionForm').val();
+			toastr.options.positionClass = "toast-" + pos;
+			toastr.options.preventDuplicates = false;
+			toastr.info('This sample position', 'Toast Position')
+		});
+	</script>
 </body>
 </html>
 
@@ -296,4 +342,5 @@ Help registro
 Corrigir BUG de Net 03 para Net02 nao mudar o estatus da tela de rearrange direito 
 Estilizar botoes dos nets para rearrange 
 Bug de estatus 2 no rearrange
+impedir de efeturar o rearrange sem nada selecionado 
 -->
