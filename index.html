@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador de Tempo - POSTNET</title>
     <link rel="stylesheet" href="./styles/index.css"></link>
+    <link rel="shortcut icon" href="./icons/Favicon.png" type="image/x-icon">
 </head>
 <body onload="CloseModal()"> 
     <div class="navbar">
@@ -230,7 +231,6 @@
                                     <input type="radio" id="from-net03" value="from-net01" name="From">
                                     <label for="from-net03" id="from-net03-label">NET 03</label>
                                 </div>                            
-                                <!-- <input type="submit" value="Submit"> -->
                         </div>
                         <div class="rearrange-icon"></div>
                         <div class="modal-col">
@@ -267,14 +267,22 @@
             </div>
         </div>
     </div>
+
+
+    
+    <!-- <div class="usage-log">
+        <h2>Registro de Uso Net 01:</h2>
+        <ul id="usageList"></ul>
+    </div> -->
+
+
     <script src="./js/ControladorNets.js"></script>
-    <script src="./js/Global.js"></script>
-    <SCRIPt>
+    <!-- <SCRIPt>
         // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
         window.onbeforeunload = function(e) {
             return 'Tem a certeza que quer fechar a janela?';
         };
-    </SCRIPt>
+    </SCRIPt> -->
 </body>
 </html>
 
@@ -285,7 +293,8 @@ Mascara Relogio Final
 Mascara Valor 
 Funcionamento Valor 
 Mascara Valor Final
-Trocar posção dos nets 
 Help registro
-Favicon
+Corrigir BUG de Net 03 para Net02 nao mudar o estatus da tela de rearrange direito 
+Estilizar botoes dos nets para rearrange 
+Bug de estatus 2 no rearrange
 -->

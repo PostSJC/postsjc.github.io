@@ -148,6 +148,7 @@ function ResetN1(){
   document.getElementById('f_minute_net01').innerText = FMN1;
   document.getElementById('f_second_net01').innerText = FSN1;
   RefreshValueN1()
+  // registerUsage()
 }
 
 function RefreshValueN1(){
@@ -443,9 +444,9 @@ function OpenModal(){
 }
 
 function SubmitModal(){
+  // DE NET01 PARA NET02
   if (document.getElementById('from-net01').checked) {
-    if (document.getElementById('to-net02').checked){
-      console.log("De Net01 para Net02")
+    if (document.getElementById('to-net02').checked){4
       IHN2 = IHN1;
       IMN2 = IMN1;
       ISN2 = ISN1;
@@ -464,31 +465,183 @@ function SubmitModal(){
       document.getElementById('i_hour_net02').innerText = IHN2;
       document.getElementById('i_minute_net02').innerText = IMN2;
       document.getElementById('i_second_net02').innerText = ISN2;
-      ResetN1();
+      // ResetN1();
       document.getElementById("btn-stop-n1").style.visibility = "hidden";
       document.getElementById("btn-start-n2").style.visibility = "hidden";
-      // ATUALIZAR BOTAO nET 02
       if(StatusN2=1){
         document.getElementById("btn-stop-n2").style.visibility = "visible";
       }
       else{
-      // if(StatusN2=2){
         document.getElementById("btn-reset-n2").style.visibility = "visible";
       }
     }
 
-
-
-
-
+  // DE NET01 PARA NET03
     if (document.getElementById('to-net03').checked){
-      console.log("De Net01 para Net03")
+      IHN3 = IHN1;
+      IMN3 = IMN1;
+      ISN3 = ISN1;
+      FHN3 = FHN1;
+      FMN3 = FMN1;
+      FSN3 = FSN1;
+      StatusN3 = StatusN1;
+      ServicesN3 = ServicesN1;
+      OtherN3 = OtherN1;
+      NetMValueN3 = NetMValueN1;
+      NetHValueN3 = NetHValueN1;
+      FinalValueN2 = FinalValueN1;
+      PBN3 = PBN1;
+      ColorN3 = ColorN1;
+      ScanN3 = ScanN1;
+      document.getElementById('i_hour_net03').innerText = IHN3;
+      document.getElementById('i_minute_net03').innerText = IMN3;
+      document.getElementById('i_second_net03').innerText = ISN3;
+      // ResetN1();
+      document.getElementById("btn-stop-n1").style.visibility = "hidden";
+      document.getElementById("btn-start-n3").style.visibility = "hidden";
+      if(StatusN3=1){
+        document.getElementById("btn-stop-n3").style.visibility = "visible";
+      }
+      else{
+        document.getElementById("btn-reset-n3").style.visibility = "visible";
+      }
     }
+    ResetN1();
   }
 
+  // DE NET02 PARA NET01
+  if (document.getElementById('from-net02').checked) {
+    if (document.getElementById('to-net01').checked){
+      IHN1 = IHN2;
+      IMN1 = IMN2;
+      ISN1 = ISN2;
+      FHN1 = FHN2;
+      FMN1 = FMN2;
+      FSN1 = FSN2;
+      StatusN1 = StatusN2;
+      ServicesN1 = ServicesN2;
+      OtherN1 = OtherN2;
+      NetMValueN1 = NetMValueN2;
+      NetHValueN1 = NetHValueN2;
+      FinalValueN1 = FinalValueN2;
+      PBN1 = PBN2;
+      ColorN1 = ColorN2;
+      ScanN1 = ScanN2;
+      document.getElementById('i_hour_net01').innerText = IHN1;
+      document.getElementById('i_minute_net01').innerText = IMN1;
+      document.getElementById('i_second_net01').innerText = ISN1;
+      // ResetN2();
+      document.getElementById("btn-stop-n2").style.visibility = "hidden";
+      document.getElementById("btn-start-n1").style.visibility = "hidden";
+      if(StatusN2=1){
+        document.getElementById("btn-stop-n1").style.visibility = "visible";
+      }
+      else{
+        document.getElementById("btn-reset-n2").style.visibility = "visible";
+      }
+    }
 
+  // DE NET02 PARA NET03
+    if (document.getElementById('to-net03').checked){
+      console.log("De Net01 para Net02")
+      IHN3 = IHN2;
+      IMN3 = IMN2;
+      ISN3 = ISN2;
+      FHN3 = FHN2;
+      FMN3 = FMN2;
+      FSN3 = FSN2;
+      StatusN3 = StatusN2;
+      ServicesN3 = ServicesN2;
+      OtherN3 = OtherN2;
+      NetMValueN3 = NetMValueN2;
+      NetHValueN3 = NetHValueN2;
+      FinalValueN2 = FinalValueN2;
+      PBN3 = PBN2;
+      ColorN3 = ColorN2;
+      ScanN3 = ScanN2;
+      document.getElementById('i_hour_net03').innerText = IHN3;
+      document.getElementById('i_minute_net03').innerText = IMN3;
+      document.getElementById('i_second_net03').innerText = ISN3;
+      // ResetN2();
+      document.getElementById("btn-stop-n2").style.visibility = "hidden";
+      document.getElementById("btn-start-n3").style.visibility = "hidden";
+      if(StatusN3=1){
+        document.getElementById("btn-stop-n3").style.visibility = "visible";
+      }
+      else{
+        document.getElementById("btn-reset-n3").style.visibility = "visible";
+      }
+    }
+    ResetN2();
+  }
 
+ // DE NET03 PARA NET01
+  if (document.getElementById('from-net03').checked){
+    if (document.getElementById('to-net01').checked){
+      IHN1 = IHN3;
+      IMN1 = IMN3;
+      ISN1 = ISN3;
+      FHN1 = FHN3;
+      FMN1 = FMN3;
+      FSN1 = FSN3;
+      StatusN1 = StatusN3;
+      ServicesN1 = ServicesN3;
+      OtherN1 = OtherN3;
+      NetMValueN1 = NetMValueN3;
+      NetHValueN1 = NetHValueN3;
+      FinalValueN1 = FinalValueN3;
+      PBN1 = PBN3;
+      ColorN1 = ColorN3;
+      ScanN1 = ScanN3;
+      document.getElementById('i_hour_net01').innerText = IHN1;
+      document.getElementById('i_minute_net01').innerText = IMN1;
+      document.getElementById('i_second_net01').innerText = ISN1;
+      // ResetN3();
+      document.getElementById("btn-stop-n3").style.visibility = "hidden";
+      document.getElementById("btn-start-n1").style.visibility = "hidden";
+      if(StatusN3=1){
+        document.getElementById("btn-stop-n1").style.visibility = "visible";
+      }
+      else{
+        document.getElementById("btn-reset-n1").style.visibility = "visible";
+      }
+    }
 
+  // DE NET03 PARA NET02
+    if (document.getElementById('from-net03').checked){
+      if (document.getElementById('to-net02').checked){
+        IHN2 = IHN3;
+        IMN2 = IMN3;
+        ISN2 = ISN3;
+        FHN2 = FHN3;
+        FMN2 = FMN3;
+        FSN2 = FSN3;
+        StatusN2 = StatusN3;
+        ServicesN2 = ServicesN3;
+        OtherN2 = OtherN3;
+        NetMValueN2 = NetMValueN3;
+        NetHValueN2 = NetHValueN3;
+        FinalValueN2 = FinalValueN3;
+        PBN2 = PBN3;
+        ColorN2 = ColorN3;
+        ScanN2 = ScanN3;
+        ResetN3();
+        document.getElementById('i_hour_net02').innerText = IHN2;
+        document.getElementById('i_minute_net02').innerText = IMN2;
+        document.getElementById('i_second_net02').innerText = ISN2;
+        // ResetN3();
+        document.getElementById("btn-stop-n3").style.visibility = "hidden";
+        document.getElementById("btn-start-n2").style.visibility = "hidden";
+        if(StatusN2=3){
+          document.getElementById("btn-stop-n2").style.visibility = "visible";
+        }
+        else{
+          document.getElementById("btn-reset-n2").style.visibility = "visible";
+        }
+      }
+    }
+    ResetN3();
+  }
   CloseModal();
 }
 
@@ -518,7 +671,6 @@ function RefreshModal(){
   }
 
 
-
   if ( StatusN1 == 1 || StatusN1 == 2){
     document.getElementById("to-net01-label").style.color = "#0001022d";
     document.getElementById("to-net01").disabled=true;
@@ -545,7 +697,30 @@ function RefreshModal(){
 }
 
 
-// $(":radio").click(function(){
-//   var radioName = $(this).attr("name"); //Get radio name
-//   $(":radio[name='"+radioName+"']").attr("disabled", true); //Disable all with the same name
-// });
+
+
+{/* <button onclick="registerUsage()">Registrar Uso</button> */}
+
+function registerUsage() {
+  console.log("Registro acionado");
+  // const computerId = document.getElementById('computerId').value;
+  // const timeUsed = document.getElementById('timeUsed').value;
+  // const timeUsed = document.getElementById('timeUsed').value;
+  IHN1;
+  IMN1;
+  ISN1;
+  FHN1;
+  FMN1;
+  FSN1;
+  FinalValueN1;
+
+  const usageList = document.getElementById('usageList');
+  const listItem = document.createElement('li');
+  // listItem.textContent = `Computador ID: ${computerId}, Tempo de Uso: ${timeUsed} minutos`;
+  listItem.textContent = `Entrada: ${IHN1}:${IMN1}:${ISN1}`;
+  usageList.appendChild(listItem);
+
+  // document.getElementById('computerId').value = '';
+  // document.getElementById('timeUsed').value = '';
+}
+
