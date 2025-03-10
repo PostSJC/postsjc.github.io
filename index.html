@@ -267,22 +267,13 @@
             </div>
         </div>
     </div>
-
-
-    
+   
     <!-- <div class="usage-log">
         <h2>Registro de Uso Net 01:</h2>
         <ul id="usageList"></ul>
     </div> -->
 
 
-    <script src="./js/ControladorNets.js"></script>
-    <SCRIPt>
-        // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
-        window.onbeforeunload = function(e) {
-            return 'Tem a certeza que quer fechar a janela?';
-        };
-    </SCRIPt>
 
 
 
@@ -290,8 +281,7 @@
 
 
 
-
-   
+    <!-- -----------------------------------------------------------------------------------TOASTR JS------------------------------------------------------------------------------------ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -328,6 +318,13 @@
 			toastr.info('This sample position', 'Toast Position')
 		});
 	</script>
+    <script src="./js/ControladorNets.js"></script>
+    <!-- <SCRIPt>
+        // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
+        window.onbeforeunload = function(e) {
+            return 'Tem a certeza que quer fechar a janela?';
+        };
+    </SCRIPt> -->
 </body>
 </html>
 
@@ -336,11 +333,13 @@
 Mascara Relogio 
 Mascara Relogio Final 
 Mascara Valor 
-Funcionamento Valor 
 Mascara Valor Final
+
+Funcionamento Valor 
 Help registro
 Corrigir BUG de Net 03 para Net02 nao mudar o estatus da tela de rearrange direito 
 Estilizar botoes dos nets para rearrange 
-Bug de estatus 2 no rearrange
-impedir de efeturar o rearrange sem nada selecionado 
+Bug submit rearrange sem ter nada selecionado
+Bug de status 2 no rearrange
+  // FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
 -->

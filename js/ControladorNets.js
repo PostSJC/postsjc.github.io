@@ -31,9 +31,9 @@ function Timer() {
     if (FMN1 <= 15) {NetMValueN1 = Net15;}
     if (FMN1 <= 30 && FMN1 > 15) {NetMValueN1 = Net30;}
     if (FMN1 <=59 && FMN1 > 30) {NetMValueN1 = Net60;}
-    document.getElementById('f_hour_net01').innerText = FHN1;
-    document.getElementById('f_minute_net01').innerText = FMN1;
-    document.getElementById('f_second_net01').innerText = FSN1;
+    document.getElementById('f_hour_net01').innerText =   (FHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_minute_net01').innerText = (FMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_second_net01').innerText = (FSN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     RefreshValueN1();
   }
 
@@ -51,9 +51,9 @@ function Timer() {
     if (FMN2 <= 15) {NetMValueN2 = Net15;}
     if (FMN2 <= 30 && FMN2 > 15) {NetMValueN2 = Net30;}
     if (FMN2 <=59 && FMN2 > 30) {NetMValueN2 = Net60;}
-    document.getElementById('f_hour_net02').innerText = FHN2;
-    document.getElementById('f_minute_net02').innerText = FMN2;
-    document.getElementById('f_second_net02').innerText = FSN2;
+    document.getElementById('f_hour_net02').innerText =   (FHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_minute_net02').innerText = (FMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_second_net02').innerText = (FSN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     RefreshValueN2();
   }
 
@@ -71,9 +71,9 @@ function Timer() {
     if (FMN3 <= 15) {NetMValueN3 = Net15;}
     if (FMN3 <= 30 && FMN3 > 15) {NetMValueN3 = Net30;}
     if (FMN3 <=59 && FMN3 > 30) {NetMValueN3 = Net60;}
-    document.getElementById('f_hour_net03').innerText = FHN3;
-    document.getElementById('f_minute_net03').innerText = FMN3;
-    document.getElementById('f_second_net03').innerText = FSN3;
+    document.getElementById('f_hour_net03').innerText =   (FHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_minute_net03').innerText = (FMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_second_net03').innerText = (FSN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     RefreshValueN3();
   }
 }
@@ -100,13 +100,14 @@ var ScanN1 = 0;
 
 function StartN1() {
   var N1 = new Date(); 
+  var formattedNumber
   RefreshValueN1();
   IHN1 = N1.getHours();
   IMN1 = N1.getMinutes();
   ISN1 = N1.getSeconds();
-  document.getElementById('i_hour_net01').innerText = IHN1;
-  document.getElementById('i_minute_net01').innerText = IMN1;
-  document.getElementById('i_second_net01').innerText = ISN1;
+  document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   StatusN1 = 1;    
   document.getElementById("btn-start-n1").style.visibility = "hidden";
   document.getElementById("btn-stop-n1").style.visibility = "visible";
@@ -143,12 +144,12 @@ function ResetN1(){
   PBN1 = 0;
   ColorN1 = 0;
   ScanN1 = 0;
-  document.getElementById('i_hour_net01').innerText = IHN1;
-  document.getElementById('i_minute_net01').innerText = IMN1;
-  document.getElementById('i_second_net01').innerText = ISN1;
-  document.getElementById('f_hour_net01').innerText = FHN1;
-  document.getElementById('f_minute_net01').innerText = FMN1;
-  document.getElementById('f_second_net01').innerText = FSN1;
+  document.getElementById('i_hour_net01').innerText = "00";
+  document.getElementById('i_minute_net01').innerText = "00";
+  document.getElementById('i_second_net01').innerText = "00";
+  document.getElementById('f_hour_net01').innerText = "00";
+  document.getElementById('f_minute_net01').innerText = "00";
+  document.getElementById('f_second_net01').innerText = "00";
   RefreshValueN1()
   // registerUsage()
 }
@@ -157,7 +158,10 @@ function RefreshValueN1(){
   FinalValueN1=0;
   OtherN1 = (PBN1 * IPBValue) + (ColorN1 * ColorValue) + (ScanN1 * ScanValue);
   FinalValueN1 = ServicesN1 + FinalValueN1 + NetMValueN1 + NetHValueN1 + OtherN1;
-  document.getElementById('final-value-N1').innerText = ("R$ " + FinalValueN1);
+  // document.getElementById('final-value-N1').innerText = ("R$ " + FinalValueN1);
+  document.getElementById('final-value-N1').innerText = ("R$ " + 
+    parseFloat(FinalValueN1).toFixed(2)
+  );
   document.getElementById('PBN1').innerText = PBN1;
   document.getElementById('ColorN1').innerText = ColorN1;
   document.getElementById('ScanN1').innerText = ScanN1;
@@ -222,9 +226,9 @@ function StartN2() {
   IHN2 = N2.getHours();
   IMN2 = N2.getMinutes();
   ISN2 = N2.getSeconds();
-  document.getElementById('i_hour_net02').innerText = IHN2;
-  document.getElementById('i_minute_net02').innerText = IMN2;
-  document.getElementById('i_second_net02').innerText = ISN2;
+  document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   StatusN2 = 1;    
   document.getElementById("btn-start-n2").style.visibility = "hidden";
   document.getElementById("btn-stop-n2").style.visibility = "visible";
@@ -262,12 +266,12 @@ function ResetN2(){
   PBN2 = 0;
   ColorN2 = 0;
   ScanN2 = 0;
-  document.getElementById('i_hour_net02').innerText = IHN2;
-  document.getElementById('i_minute_net02').innerText = IMN2;
-  document.getElementById('i_second_net02').innerText = ISN2;
-  document.getElementById('f_hour_net02').innerText = FHN2;
-  document.getElementById('f_minute_net02').innerText = FMN2;
-  document.getElementById('f_second_net02').innerText = FSN2;
+  document.getElementById('i_hour_net02').innerText = "00";
+  document.getElementById('i_minute_net02').innerText = "00";
+  document.getElementById('i_second_net02').innerText = "00";
+  document.getElementById('f_hour_net02').innerText = "00";
+  document.getElementById('f_minute_net02').innerText = "00";
+  document.getElementById('f_second_net02').innerText = "00";
   RefreshValueN2()
 }
 
@@ -275,7 +279,9 @@ function RefreshValueN2(){
   FinalValueN2=0;
   OtherN2 = (PBN2 * IPBValue) + (ColorN2 * ColorValue) + (ScanN2 * ScanValue);
   FinalValueN2 = ServicesN2 + FinalValueN2 + NetMValueN2 + NetHValueN2 + OtherN2;
-  document.getElementById('final-value-N2').innerText = ("R$ " + FinalValueN2);
+  document.getElementById('final-value-N2').innerText = ("R$ " + 
+    parseFloat(FinalValueN2).toFixed(2)
+  );
   document.getElementById('PBN2').innerText = PBN2;
   document.getElementById('ColorN2').innerText = ColorN2;
   document.getElementById('ScanN2').innerText = ScanN2;
@@ -340,9 +346,9 @@ function StartN3() {
   IHN3 = N3.getHours();
   IMN3 = N3.getMinutes();
   ISN3 = N3.getSeconds();
-  document.getElementById('i_hour_net03').innerText = IHN3;
-  document.getElementById('i_minute_net03').innerText = IMN3;
-  document.getElementById('i_second_net03').innerText = ISN3;
+  document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   StatusN3 = 1;    
   document.getElementById("btn-start-n3").style.visibility = "hidden";
   document.getElementById("btn-stop-n3").style.visibility = "visible";
@@ -379,12 +385,12 @@ function ResetN3(){
   PBN3 = 0;
   ColorN3 = 0;
   ScanN3 = 0;
-  document.getElementById('i_hour_net03').innerText = IHN3;
-  document.getElementById('i_minute_net03').innerText = IMN3;
-  document.getElementById('i_second_net03').innerText = ISN3;
-  document.getElementById('f_hour_net03').innerText = FHN3;
-  document.getElementById('f_minute_net03').innerText = FMN3;
-  document.getElementById('f_second_net03').innerText = FSN3;
+  document.getElementById('i_hour_net03').innerText = "00";
+  document.getElementById('i_minute_net03').innerText = "00";
+  document.getElementById('i_second_net03').innerText = "00";
+  document.getElementById('f_hour_net03').innerText = "00";
+  document.getElementById('f_minute_net03').innerText = "00";
+  document.getElementById('f_second_net03').innerText = "00";
   RefreshValueN3()
 }
 
@@ -392,7 +398,9 @@ function RefreshValueN3(){
   FinalValueN3=0;
   OtherN3 = (PBN3 * IPBValue) + (ColorN3 * ColorValue) + (ScanN3 * ScanValue);
   FinalValueN3 = ServicesN3 + FinalValueN3 + NetMValueN3 + NetHValueN3 + OtherN3;
-  document.getElementById('final-value-N3').innerText = ("R$ " + FinalValueN3);
+  document.getElementById('final-value-N3').innerText = ("R$ " + 
+    parseFloat(FinalValueN3).toFixed(2)
+  );
   document.getElementById('PBN3').innerText = PBN3;
   document.getElementById('ColorN3').innerText = ColorN3;
   document.getElementById('ScanN3').innerText = ScanN3;
@@ -438,14 +446,10 @@ function ScanN3remove(){
 
 
 function CloseModal(){
-  // document.getElementById("modal").style.visibility = "hidden";
   document.getElementById("modal").style.display = "none";
-
-  // FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
 }
 
 function OpenModal(){
-  // document.getElementById("modal").style.visibility = "visible";
   document.getElementById("modal").style.display = "flex";
   RefreshModal();
 }
@@ -472,7 +476,6 @@ function SubmitModal(){
       document.getElementById('i_hour_net02').innerText = IHN2;
       document.getElementById('i_minute_net02').innerText = IMN2;
       document.getElementById('i_second_net02').innerText = ISN2;
-      // ResetN1();
       document.getElementById("btn-stop-n1").style.visibility = "hidden";
       document.getElementById("btn-start-n2").style.visibility = "hidden";
       if(StatusN2=1){
@@ -704,38 +707,10 @@ function RefreshModal(){
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-{/* <button onclick="registerUsage()">Registrar Uso</button> */}
-
-function registerUsage() {
-  console.log("Registro acionado");
-  // const computerId = document.getElementById('computerId').value;
-  // const timeUsed = document.getElementById('timeUsed').value;
-  // const timeUsed = document.getElementById('timeUsed').value;
-  IHN1;
-  IMN1;
-  ISN1;
-  FHN1;
-  FMN1;
-  FSN1;
-  FinalValueN1;
-
-  const usageList = document.getElementById('usageList');
-  const listItem = document.createElement('li');
-  // listItem.textContent = `Computador ID: ${computerId}, Tempo de Uso: ${timeUsed} minutos`;
-  listItem.textContent = `Entrada: ${IHN1}:${IMN1}:${ISN1}`;
-  usageList.appendChild(listItem);
-
-  // document.getElementById('computerId').value = '';
-  // document.getElementById('timeUsed').value = '';
-}
+// function registerUsage() {
+//   const usageList = document.getElementById('usageList');
+//   const listItem = document.createElement('li');
+//   listItem.textContent = `Entrada:' ${FinalValueN1}`;
+//   usageList.appendChild(listItem);
+// }
 
