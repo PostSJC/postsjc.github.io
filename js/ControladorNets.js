@@ -19,6 +19,10 @@ function Timer() {
   Second = N1.getSeconds();
 
   if (StatusN1 == 1) {
+    // ServicesN1 = document.getElementById('ValueN1').value;
+    // console.log(ServicesN1);
+
+
     FHN1 = Hour - IHN1;
     FMN1 = Minute - IMN1;
     FSN1 = Second - ISN1;
@@ -100,7 +104,7 @@ var ScanN1 = 0;
 
 function StartN1() {
   var N1 = new Date(); 
-  var formattedNumber
+  // var formattedNumber
   RefreshValueN1();
   IHN1 = N1.getHours();
   IMN1 = N1.getMinutes();
@@ -680,8 +684,7 @@ function RefreshModal(){
     document.getElementById("from-net03-label").style.color = "#000000";
     document.getElementById("from-net03").disabled=false;
   }
-
-
+  
   if ( StatusN1 == 1 || StatusN1 == 2){
     document.getElementById("to-net01-label").style.color = "#0001022d";
     document.getElementById("to-net01").disabled=true;
@@ -705,12 +708,6 @@ function RefreshModal(){
     document.getElementById("to-net03-label").style.color = "#000000";
     document.getElementById("to-net03").disabled=false;
   }
+
+
 }
-
-// function registerUsage() {
-//   const usageList = document.getElementById('usageList');
-//   const listItem = document.createElement('li');
-//   listItem.textContent = `Entrada:' ${FinalValueN1}`;
-//   usageList.appendChild(listItem);
-// }
-

@@ -67,12 +67,15 @@
                         Valor
                     </div>
                     <div class="col">
-                        <input type="text" id="input_value" name="input_value" class="services-value" />
+                        <input type="text" id="ValueN1" name="input_value" class="services-value" />
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
-            <button class="button-start start" id="btn-start-n1" onclick="StartN1()">Começar</button>
+            <button class="button-start start" id="btn-start-n1" onclick="StartN1()">
+                Começar
+                <span class="Dialog"></span>
+            </button>
             <button class="button-start stop" id="btn-stop-n1" onclick="StopN1()">Finalizar</button>
             <button class="button-start reset" id="btn-reset-n1" onclick="ResetN1()">Resetar</button>
             <div class="final-value" id="final-value-N1">R$ 0,00</div>
@@ -268,6 +271,14 @@
         </div>
     </div>
    
+    <footer>Desenvolvido por&nbsp;<a href="https://github.com/matheus-cunha">Matheus Cunha</a>&nbsp;  v1.0 @ 2025</footer>
+    
+    
+
+
+    <!-- .modal
+    .modal-backdrop -->
+
     <!-- <div class="usage-log">
         <h2>Registro de Uso Net 01:</h2>
         <ul id="usageList"></ul>
@@ -319,27 +330,31 @@
 		});
 	</script>
     <script src="./js/ControladorNets.js"></script>
-    <SCRIPt>
+    <!-- <SCRIPt>
         // DESCOMENTAR AO FAZER LANÇAMENTO DO APP - CONFIRMAÇÃO DE FECHAMENTO DE PAGINA 
         window.onbeforeunload = function(e) {
             return 'Tem a certeza que quer fechar a janela?';
         };
-    </SCRIPt>
+    </SCRIPt> -->
 </body>
 </html>
 
 
 <!-- Falta
-Mascara Relogio 
-Mascara Relogio Final 
-Mascara Valor 
-Mascara Valor Final
 
-Funcionamento Valor 
-Help registro
-Corrigir BUG de Net 03 para Net02 nao mudar o estatus da tela de rearrange direito 
-Estilizar botoes dos nets para rearrange 
-Bug submit rearrange sem ter nada selecionado
-Bug de status 2 no rearrange
-  // FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
+Funcionais 
+    Funcionamento campo Valor 
+    Função alterar hora inicial
+    Registro de nets - componente net 
+    Botão Help no modal rearrange (Explicando como funciona)
+    Bug submit rearrange sem ter nada selecionado
+    Confirmar Encerramento do net
+    footer
+    Net 03 troca para Net 01 nao esta arrumando a mascara da hora inicial
+
+Melhorias 
+    Estilizar modal e botão Net - Rearrange
+    Responsividade
+    FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
+    Limpar Codigo e finalizar
 -->
