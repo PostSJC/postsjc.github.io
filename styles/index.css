@@ -366,6 +366,11 @@ footer a{
     color: #a59ed15c;
 }
 
+footer a:visited{
+    text-decoration: none;
+    color: #a59ed15c;
+}
+
 
 
 
