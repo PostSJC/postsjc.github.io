@@ -19,10 +19,6 @@ function Timer() {
   Second = N1.getSeconds();
 
   if (StatusN1 == 1) {
-    // ServicesN1 = document.getElementById('ValueN1').value;
-    // console.log(ServicesN1);
-
-
     FHN1 = Hour - IHN1;
     FMN1 = Minute - IMN1;
     FSN1 = Second - ISN1;
@@ -104,7 +100,6 @@ var ScanN1 = 0;
 
 function StartN1() {
   var N1 = new Date(); 
-  // var formattedNumber
   RefreshValueN1();
   IHN1 = N1.getHours();
   IMN1 = N1.getMinutes();
@@ -115,6 +110,7 @@ function StartN1() {
   StatusN1 = 1;    
   document.getElementById("btn-start-n1").style.visibility = "hidden";
   document.getElementById("btn-stop-n1").style.visibility = "visible";
+  registerInitialUsageN1();
 }
 
 function StopN1() {
@@ -127,6 +123,7 @@ function StopN1() {
   document.getElementById("btn-reset-n1").style.visibility = "visible";
 
   toastr.success('Tempo do NET01 - Encerrado');
+  registerFinalUsageN1();
 }
 
 function ResetN1(){
@@ -155,7 +152,6 @@ function ResetN1(){
   document.getElementById('f_minute_net01').innerText = "00";
   document.getElementById('f_second_net01').innerText = "00";
   RefreshValueN1()
-  // registerUsage()
 }
 
 function RefreshValueN1(){
@@ -236,6 +232,7 @@ function StartN2() {
   StatusN2 = 1;    
   document.getElementById("btn-start-n2").style.visibility = "hidden";
   document.getElementById("btn-stop-n2").style.visibility = "visible";
+  registerInitialUsageN2();
 }
 
 function StopN2() {
@@ -246,9 +243,9 @@ function StopN2() {
   StatusN2 = 2;    
   document.getElementById("btn-stop-n2").style.visibility = "hidden";
   document.getElementById("btn-reset-n2").style.visibility = "visible";
-
   
   toastr.success('Tempo do NET02 - Encerrado');
+  registerFinalUsageN2();
 }
 
 function ResetN2(){
@@ -356,6 +353,7 @@ function StartN3() {
   StatusN3 = 1;    
   document.getElementById("btn-start-n3").style.visibility = "hidden";
   document.getElementById("btn-stop-n3").style.visibility = "visible";
+  registerInitialUsageN3();
 }
 
 function StopN3() {
@@ -368,6 +366,7 @@ function StopN3() {
   document.getElementById("btn-reset-n3").style.visibility = "visible";
   
   toastr.success('Tempo do NET03 - Encerrado');
+  registerFinalUsageN3();
 }
 
 function ResetN3(){
@@ -395,7 +394,7 @@ function ResetN3(){
   document.getElementById('f_hour_net03').innerText = "00";
   document.getElementById('f_minute_net03').innerText = "00";
   document.getElementById('f_second_net03').innerText = "00";
-  RefreshValueN3()
+  RefreshValueN3();
 }
 
 function RefreshValueN3(){
@@ -446,15 +445,23 @@ function ScanN3remove(){
   }
 }
 
-// --------------------------------------------------------------
+// --------------------------------------------------------MODAL-------------------------------------------
 
+var modal = document.getElementById("RearrangeModal");
+// var btn = document.getElementById("OpenRearrangeModal");
 
 function CloseModal(){
-  document.getElementById("modal").style.display = "none";
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 function OpenModal(){
-  document.getElementById("modal").style.display = "flex";
+  modal.style.display = "block";
   RefreshModal();
 }
 
@@ -477,9 +484,12 @@ function SubmitModal(){
       PBN2 = PBN1;
       ColorN2 = ColorN1;
       ScanN2 = ScanN1;
-      document.getElementById('i_hour_net02').innerText = IHN2;
-      document.getElementById('i_minute_net02').innerText = IMN2;
-      document.getElementById('i_second_net02').innerText = ISN2;
+      document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      // document.getElementById('i_hour_net02').innerText = IHN2;
+      // document.getElementById('i_minute_net02').innerText = IMN2;
+      // document.getElementById('i_second_net02').innerText = ISN2;
       document.getElementById("btn-stop-n1").style.visibility = "hidden";
       document.getElementById("btn-start-n2").style.visibility = "hidden";
       if(StatusN2=1){
@@ -507,9 +517,12 @@ function SubmitModal(){
       PBN3 = PBN1;
       ColorN3 = ColorN1;
       ScanN3 = ScanN1;
-      document.getElementById('i_hour_net03').innerText = IHN3;
-      document.getElementById('i_minute_net03').innerText = IMN3;
-      document.getElementById('i_second_net03').innerText = ISN3;
+      document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      // document.getElementById('i_hour_net03').innerText = IHN3;
+      // document.getElementById('i_minute_net03').innerText = IMN3;
+      // document.getElementById('i_second_net03').innerText = ISN3;
       // ResetN1();
       document.getElementById("btn-stop-n1").style.visibility = "hidden";
       document.getElementById("btn-start-n3").style.visibility = "hidden";
@@ -541,9 +554,12 @@ function SubmitModal(){
       PBN1 = PBN2;
       ColorN1 = ColorN2;
       ScanN1 = ScanN2;
-      document.getElementById('i_hour_net01').innerText = IHN1;
-      document.getElementById('i_minute_net01').innerText = IMN1;
-      document.getElementById('i_second_net01').innerText = ISN1;
+      document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      // document.getElementById('i_hour_net01').innerText = IHN1;
+      // document.getElementById('i_minute_net01').innerText = IMN1;
+      // document.getElementById('i_second_net01').innerText = ISN1;
       // ResetN2();
       document.getElementById("btn-stop-n2").style.visibility = "hidden";
       document.getElementById("btn-start-n1").style.visibility = "hidden";
@@ -573,9 +589,12 @@ function SubmitModal(){
       PBN3 = PBN2;
       ColorN3 = ColorN2;
       ScanN3 = ScanN2;
-      document.getElementById('i_hour_net03').innerText = IHN3;
-      document.getElementById('i_minute_net03').innerText = IMN3;
-      document.getElementById('i_second_net03').innerText = ISN3;
+      document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      // document.getElementById('i_hour_net03').innerText = IHN3;
+      // document.getElementById('i_minute_net03').innerText = IMN3;
+      // document.getElementById('i_second_net03').innerText = ISN3;
       // ResetN2();
       document.getElementById("btn-stop-n2").style.visibility = "hidden";
       document.getElementById("btn-start-n3").style.visibility = "hidden";
@@ -607,10 +626,13 @@ function SubmitModal(){
       PBN1 = PBN3;
       ColorN1 = ColorN3;
       ScanN1 = ScanN3;
-      document.getElementById('i_hour_net01').innerText = IHN1;
-      document.getElementById('i_minute_net01').innerText = IMN1;
-      document.getElementById('i_second_net01').innerText = ISN1;
-      // ResetN3();
+      document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      // document.getElementById('i_hour_net01').innerText = IHN1;
+      // document.getElementById('i_minute_net01').innerText = IMN1;
+      // document.getElementById('i_second_net01').innerText = ISN1;
+      // // ResetN3();
       document.getElementById("btn-stop-n3").style.visibility = "hidden";
       document.getElementById("btn-start-n1").style.visibility = "hidden";
       if(StatusN3=1){
@@ -639,10 +661,13 @@ function SubmitModal(){
         PBN2 = PBN3;
         ColorN2 = ColorN3;
         ScanN2 = ScanN3;
-        ResetN3();
-        document.getElementById('i_hour_net02').innerText = IHN2;
-        document.getElementById('i_minute_net02').innerText = IMN2;
-        document.getElementById('i_second_net02').innerText = ISN2;
+        // ResetN3();
+        document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        // document.getElementById('i_hour_net02').innerText = IHN2;
+        // document.getElementById('i_minute_net02').innerText = IMN2;
+        // document.getElementById('i_second_net02').innerText = ISN2;
         // ResetN3();
         document.getElementById("btn-stop-n3").style.visibility = "hidden";
         document.getElementById("btn-start-n2").style.visibility = "hidden";
@@ -661,7 +686,7 @@ function SubmitModal(){
 }
 
 function RefreshModal(){
-  if ( StatusN1 == 0){
+  if ( StatusN1 == 0 || StatusN1 == 2){
     document.getElementById("from-net01-label").style.color = "#0001022d";
     document.getElementById("from-net01").disabled=true;
   }else{
@@ -669,7 +694,7 @@ function RefreshModal(){
     document.getElementById("from-net01").disabled=false;
   }
 
-  if ( StatusN2 == 0){
+  if ( StatusN2 == 0 || StatusN2 == 2){
     document.getElementById("from-net02-label").style.color = "#0001022d";
     document.getElementById("from-net02").disabled=true;
   }else{
@@ -677,7 +702,7 @@ function RefreshModal(){
     document.getElementById("from-net02").disabled=false;
   }
 
-  if ( StatusN3 == 0){
+  if ( StatusN3 == 0 || StatusN3 == 2){
     document.getElementById("from-net03-label").style.color = "#0001022d";
     document.getElementById("from-net03").disabled=true;
   }else{
@@ -708,6 +733,126 @@ function RefreshModal(){
     document.getElementById("to-net03-label").style.color = "#000000";
     document.getElementById("to-net03").disabled=false;
   }
+}
+
+// -----------------------------Modal Net 01 -------------------
+
+var ModalNet01 = document.getElementById("ModalNet01");
+
+function CloseModalNet01(){
+  ModalNet01.style.display = "none";
+}
+
+// window.onclick = function(event) {
+//   if (event.target == ModalNet01) {
+//     ModalNet01.style.display = "none";
+//   }
+// }
+
+function OpenModalNet01(){
+  ModalNet01.style.display = "block";
+}
+
+function registerInitialUsageN1() {
+  const InitialList = document.getElementById('InitialListN1');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+  InitialList.appendChild(listItem);
+}
+
+function registerFinalUsageN1() {
+  const FinalList = document.getElementById('FinalListN1');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
+  FinalList.appendChild(listItem);
+  registerFinalUsageValueN1();
+}
+
+function registerFinalUsageValueN1() {
+  const FinalListValue = document.getElementById('FinalListValueN1');
+  const listItem = document.createElement('li');
+  listItem.textContent = `R$${parseFloat(FinalValueN1).toFixed(2)}`;      
+  FinalListValue.appendChild(listItem);
+}
 
 
+
+// -----------------------------Modal Net 02 -------------------
+
+var ModalNet02 = document.getElementById("ModalNet02");
+
+function CloseModalNet02(){
+  ModalNet02.style.display = "none";
+}
+
+// window.onclick = function(event) {
+//   if (event.target == ModalNet02) {
+//     ModalNet02.style.display = "none";
+//   }
+// }
+
+function OpenModalNet02(){
+  ModalNet02.style.display = "block";
+}
+
+function registerInitialUsageN2() {
+  const InitialList = document.getElementById('InitialListN2');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+  InitialList.appendChild(listItem);
+}
+
+function registerFinalUsageN2() {
+  const FinalList = document.getElementById('FinalListN2');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
+  FinalList.appendChild(listItem);
+  registerFinalUsageValueN2();
+}
+
+function registerFinalUsageValueN2() {
+  const FinalListValue = document.getElementById('FinalListValueN2');
+  const listItem = document.createElement('li');
+  listItem.textContent = `R$${parseFloat(FinalValueN2).toFixed(2)}`;      
+  FinalListValue.appendChild(listItem);
+}
+
+// -----------------------------Modal Net 03 -------------------
+
+var ModalNet03 = document.getElementById("ModalNet03");
+
+function CloseModalNet03(){
+  ModalNet03.style.display = "none";
+}
+
+// window.onclick = function(event) {
+//   if (event.target == ModalNet03) {
+//     ModalNet03.style.display = "none";
+//   }
+// }
+
+function OpenModalNet03(){
+  ModalNet03.style.display = "block";
+}
+
+function registerInitialUsageN3() {
+  const InitialList = document.getElementById('InitialListN3');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+  InitialList.appendChild(listItem);
+}
+
+function registerFinalUsageN3() {
+  const FinalList = document.getElementById('FinalListN3');
+  const listItem = document.createElement('li');
+  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
+  FinalList.appendChild(listItem);
+  registerFinalUsageValueN3();
+}
+
+function registerFinalUsageValueN3() {
+  const FinalListValue = document.getElementById('FinalListValueN3');
+  const listItem = document.createElement('li');
+  listItem.textContent = `R$${parseFloat(FinalValueN2).toFixed(2)}`;      
+  FinalListValue.appendChild(listItem);
 }

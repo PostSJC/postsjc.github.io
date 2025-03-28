@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="./styles/index.css"></link>
     <link rel="shortcut icon" href="./icons/Favicon.png" type="image/x-icon">
 </head>
-<body onload="CloseModal()"> 
+<body> 
     <div class="navbar">
         <div class="post-icon"></div>
-        <a class="btn-rearrange" onclick="OpenModal()"></a>
+        <button class="btn-rearrange" onclick="OpenModal()" id="OpenRearrangeModal"></button>
     </div>
     <div class="body-wrapper">
         <!-- --------------------------------------------- NET 01 -------------------------------------------- -->
         <div class="component-net">
             <div class="card-nav">
-                <div class="help"></div>
-                <div class="pause"></div> 
+                <div class="help" onclick="OpenModalNet01()" id="OpenModalNet01"></div>
             </div>
             <div class="component-net--name">
                 NET 01 
@@ -83,7 +82,7 @@
         <!-- --------------------------------------------- NET 02 -------------------------------------------- -->
         <div class="component-net">
             <div class="card-nav">
-                <div class="help"></div>
+                <div class="help" onclick="OpenModalNet02()"></div>
                 <div class="pause"></div> 
             </div>
             <div class="component-net--name">
@@ -147,7 +146,7 @@
         <!-- --------------------------------------------- NET 03 -------------------------------------------- -->  
         <div class="component-net">
             <div class="card-nav">
-                <div class="help"></div>
+                <div class="help" onclick="OpenModalNet03()"></div>
                 <div class="pause"></div> 
             </div>
             <div class="component-net--name">
@@ -208,85 +207,140 @@
             <button class="button-start reset" id="btn-reset-n3" onclick="ResetN3()">Resetar</button>
             <div class="final-value" id="final-value-N3">R$ 0,00</div>
         </div>
-    <!-- --------------------------------------------- FIM NETS------------------------------------ -->
     </div>
-    <div class="modal" >
-        <div class="modal-backdrop" id="modal">
-            <div class="modal-content">
-                <!-- <form action="/action_page.php" method="get"> -->
-                    <div class="modal-row">
-                        <span>Troca de computadores</span>
-                    </div>
-                    <div class="modal-row modal-nets">
-                        <div class="modal-col">
-                                <div class="net-block">
-                                    De:
-                                </div>
-                                <div class="net-block">
-                                    <input type="radio" id="from-net01" value="from-net01" name="From">
-                                    <label for="from-net01" id="from-net01-label">NET 01</label>
-                                </div>
-                                <div class="net-block">
-                                    <input type="radio" id="from-net02" value="from-net01" name="From">
-                                    <label for="from-net02" id="from-net02-label">NET 02</label>
-                                </div>
-                                <div class="net-block">
-                                    <input type="radio" id="from-net03" value="from-net01" name="From">
-                                    <label for="from-net03" id="from-net03-label">NET 03</label>
-                                </div>                            
-                        </div>
-                        <div class="rearrange-icon"></div>
-                        <div class="modal-col">
-                            <div class="net-block">
-                                Para:
-                            </div>
-                            <div class="net-block">
-                                <input type="radio" id="to-net01" value="to-net01" name="To">
-                                <label for="to-net01" id="to-net01-label">NET 01</label>
-                            </div>
-                            <div class="net-block">
-                                <input type="radio" id="to-net02" value="to-net02" name="To">
-                                <label for="to-net02" id="to-net02-label">NET 02</label>
-                            </div>
-                            <div class="net-block">
-                                <input type="radio" id="to-net03" value="to-net03" name="To">
-                                <label for="to-net03" id="to-net03-label">NET 03</label>
-                            </div>   
-                        </div>
-                    </div>
-                    <div class="modal-row">
-                        <div class="modal-col">
-                            <button class="button-modal" id="botao-temporario" onclick="CloseModal()" class="fecharModal">
-                                Cancelar
-                            </button>
-                        </div>
-                        <div class="modal-col">
-                            <button class="button-modal" id="botao-temporario" onclick="SubmitModal()" class="fecharModal">
-                                Trocar nets
-                            </button>
-                        </div>
-                    </div>
-                <!-- </form> -->
+    <!-- --------------------------------------------- FIM NETS------------------------------------ -->
+    <!-- ---------------------------------MODAL REARRANGE -->
+    <div id="RearrangeModal" class="modal" >
+        <div class="modal-content">
+            <div class="modal-row">
+                <span>Troca de computadores</span>
             </div>
+            <div class="modal-row modal-nets">
+                <div class="modal-col">
+                    <div class="net-block">
+                        De:
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="from-net01" value="from-net01" name="From">
+                        <label for="from-net01" id="from-net01-label">NET 01</label>
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="from-net02" value="from-net01" name="From">
+                        <label for="from-net02" id="from-net02-label">NET 02</label>
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="from-net03" value="from-net01" name="From">
+                        <label for="from-net03" id="from-net03-label">NET 03</label>
+                    </div>                            
+                </div>
+                <div class="rearrange-icon"></div>
+                <div class="modal-col">
+                    <div class="net-block">
+                        Para:
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="to-net01" value="to-net01" name="To">
+                        <label for="to-net01" id="to-net01-label">NET 01</label>
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="to-net02" value="to-net02" name="To">
+                        <label for="to-net02" id="to-net02-label">NET 02</label>
+                    </div>
+                    <div class="net-block">
+                        <input type="radio" id="to-net03" value="to-net03" name="To">
+                        <label for="to-net03" id="to-net03-label">NET 03</label>
+                    </div>   
+                </div>
+            </div>
+            <div class="modal-row">
+                <div class="modal-col">
+                    <button class="button-modal" id="CancelRearrangeModal" onclick="CloseModal()" class="fecharModal">
+                        Cancelar
+                    </button>
+                </div>
+                <div class="modal-col">
+                    <button class="button-modal" id="SubmitRearrangeModal" onclick="SubmitModal()" class="fecharModal">
+                        Trocar nets
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- ---------------------------------MODAL NET01 -->
+     <div id="ModalNet01" class="modal" >
+        <div class="modal-content">
+            <div class="UsageLog-Net01">
+                <div>Registro de Uso Net 01:</div>
+                <div class="row">
+                    <div class="col">
+                        <ul>Hora Inicial</ul>
+                        <ul id="InitialListN1"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Hora Final</ul>
+                        <ul id="FinalListN1"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Valor Venda</ul>
+                        <ul id="FinalListValueN1"></ul>
+                    </div>
+                </div>
+            </div>
+            <button class="Teste" onclick="CloseModalNet01()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- ---------------------------------MODAL NET02 -->
+    <div id="ModalNet02" class="modal" >
+        <div class="modal-content">
+            <div class="UsageLog-Net02">
+                <div>Registro de Uso Net 02:</div>
+                <div class="row">
+                    <div class="col">
+                        <ul>Hora Inicial</ul>
+                        <ul id="InitialListN2"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Hora Final</ul>
+                        <ul id="FinalListN2"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Valor Venda</ul>
+                        <ul id="FinalListValueN2"></ul>
+                    </div>
+                </div>
+            </div>
+            <button class="Teste" onclick="CloseModalNet02()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- ---------------------------------MODAL NET03 -->
+    <div id="ModalNet03" class="modal" >
+        <div class="modal-content">
+            <div class="UsageLog-Net03">
+                <div>Registro de Uso Net 03:</div>
+                <div class="row">
+                    <div class="col">
+                        <ul>Hora Inicial</ul>
+                        <ul id="InitialListN3"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Hora Final</ul>
+                        <ul id="FinalListN3"></ul>
+                    </div>
+                    <div class="col">
+                        <ul>Valor Venda</ul>
+                        <ul id="FinalListValueN3"></ul>
+                    </div>
+                </div>
+            </div>
+            <button class="Teste" onclick="CloseModalNet03()">Fechar</button>
         </div>
     </div>
    
     <footer>Desenvolvido por&nbsp;<a href="https://github.com/matheus-cunha">Matheus Cunha</a>&nbsp;  v1.0 @ 2025</footer>
     
-    
-
-
-    <!-- .modal
-    .modal-backdrop -->
-
-    <!-- <div class="usage-log">
-        <h2>Registro de Uso Net 01:</h2>
-        <ul id="usageList"></ul>
-    </div> -->
-
-
-
-
 
 
 
@@ -350,11 +404,16 @@ Funcionais
     Bug submit rearrange sem ter nada selecionado
     Confirmar Encerramento do net
     footer
-    Net 03 troca para Net 01 nao esta arrumando a mascara da hora inicial
 
 Melhorias 
     Estilizar modal e botão Net - Rearrange
     Responsividade
     FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
     Limpar Codigo e finalizar
+
+Responsividade 
+    Regular largura da pagina 
+    Footer
+    Toaster fixado 
+    Modal 
 -->
