@@ -104,6 +104,7 @@ body{
     width: 50%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     text-align: center;
 }
 
@@ -208,35 +209,6 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
-
-.col ul{
-    list-style-type: none;
-    margin: 0.5rem 0;
-}
-
-.UsageLog-title{
-    display: flex;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-}
-
-.UsageLog{
-    height: 8rem;
-    overflow-y: auto;
-}
-
-.button-modal--net{
-    font-weight: bold;
-    padding: 0.3rem 2rem;
-    color: white;
-    background-color: #2572CB;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 15px;
-    cursor: pointer;
-}
-
 .card-nav{
     display: flex;
     position: relative;   
@@ -324,7 +296,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
     justify-content: center;
     align-items: center;
 }
@@ -363,36 +334,15 @@ body{
     list-style-type: none;
     justify-content: center;
     align-items: center;
+
 }
 
 .UsageLog-Net01 .col{
     display: block;
     flex-direction: row;
+    
     justify-content: center;
     align-items: center;
-}
-
-.New-hour--input{
-    width: 3rem;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center; 
-}
-
-.NewHour{
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-.ModalSubmit{
-    font-weight: bold;
-    padding: 0.2rem 1rem;
-    color: white;
-    background-color: #2572CB;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 13px;
-    cursor: pointer;
 }
 
 footer{
@@ -402,18 +352,14 @@ footer{
     transform: translateX(-50%);
     display: flex;
     width: 100vw;
+    /* background-color: black; */
     color: #a59ed15c;
     justify-content: center;
-    user-select:none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-}
-
-.component-net--services .col {
-    font-size: 14px;
 }
 
 footer a{
@@ -431,18 +377,10 @@ footer a:visited{
     justify-content: top;
 }
 
-.DESATIVADO{
-    cursor: default;
-    opacity: 0.5;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+#CancelRearrangeModal{
+    background-color: rgb(247, 153, 153);
+    color: black;
 }
-
-@media screen and (max-width: 1040px) {}
 
 @media screen and (max-width: 800px) {
     body{
@@ -471,7 +409,7 @@ footer a:visited{
         margin: 2rem 0;
         position: relative;
     }
-    
+        
     .row{
         font-size: 1.3rem;
     }
@@ -480,13 +418,13 @@ footer a:visited{
         display: flex ;
         height: 5rem;
         width: 100%;
-        position: relative;
+        position: relative;    
     }
-
+    
     .btn-rearrange{
         left: 95%;
     }
-        
+    
     .modal-backdrop{
         position: relative;
         display: block;
@@ -501,21 +439,22 @@ footer a:visited{
         font-size: 0.8rem;
         bottom: 0.5rem;
     }
+
 }
 
 @media screen and (max-width: 350px) {
     body{
         font-size: 15px;
     }
-    
+        
     .component-net{
         margin: 1rem 0;
     } 
-        
+    
     .row{
         font-size: 1rem;
     }
-
+    
     .services-value{
         font-size: 0.5rem;
     }

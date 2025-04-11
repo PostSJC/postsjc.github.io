@@ -1,13 +1,15 @@
 "use strict";
-var Net15 = 5.00; 
-var Net30 = 6.00;
-var Net60 = 7.00;
-var IPBValue = 2;
+
+var Net15 = 4.50; 
+var Net30 = 5.50;
+var Net60 = 6.50;
+var IPBValue = 1;
 var ColorValue = 3;
 var ScanValue = 2;
-setInterval(() => { Timer(); }, 100);
 
+setInterval(() => { Timer(); }, 100);
 function Timer() {
+
   var N1 = new Date(); 
   Hour = N1.getHours();
   Minute = N1.getMinutes();
@@ -50,7 +52,7 @@ function Timer() {
     document.getElementById('f_second_net02').innerText = (FSN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     RefreshValueN2();
   }
-
+  
   if (StatusN3 == 1) {
     FHN3 = Hour - IHN3;
     FMN3 = Minute - IMN3;
@@ -150,6 +152,7 @@ function RefreshValueN1(){
   FinalValueN1=0;
   OtherN1 = (PBN1 * IPBValue) + (ColorN1 * ColorValue) + (ScanN1 * ScanValue);
   FinalValueN1 = ServicesN1 + FinalValueN1 + NetMValueN1 + NetHValueN1 + OtherN1;
+
   document.getElementById('final-value-N1').innerText = ("R$ " + 
     parseFloat(FinalValueN1).toFixed(2)
   );
@@ -233,6 +236,7 @@ function StopN2() {
   StatusN2 = 2;    
   document.getElementById("btn-stop-n2").style.visibility = "hidden";
   document.getElementById("btn-reset-n2").style.visibility = "visible";
+  
   toastr.success('Tempo do NET02 - Encerrado');
   registerFinalUsageN2();
 }
@@ -352,6 +356,7 @@ function StopN3() {
   StatusN3 = 2;    
   document.getElementById("btn-stop-n3").style.visibility = "hidden";
   document.getElementById("btn-reset-n3").style.visibility = "visible";
+  
   toastr.success('Tempo do NET03 - Encerrado');
   registerFinalUsageN3();
 }
@@ -450,6 +455,7 @@ function OpenModal(){
 }
 
 function SubmitModal(){
+
   if (document.getElementById('from-net01').checked) {
     if (document.getElementById('to-net02').checked){4
       IHN2 = IHN1;
@@ -469,7 +475,7 @@ function SubmitModal(){
       ScanN2 = ScanN1;
       document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
       document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+      document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}); 
       document.getElementById("btn-stop-n1").style.visibility = "hidden";
       document.getElementById("btn-start-n2").style.visibility = "hidden";
       if(StatusN2=1){
@@ -510,7 +516,8 @@ function SubmitModal(){
     }
     ResetN1();
   }
-  
+
+
   if (document.getElementById('from-net02').checked) {
     if (document.getElementById('to-net01').checked){
       IHN1 = IHN2;
@@ -600,6 +607,7 @@ function SubmitModal(){
       else{
         document.getElementById("btn-reset-n1").style.visibility = "visible";
       }
+    
     }
 
     if (document.getElementById('from-net03').checked){
