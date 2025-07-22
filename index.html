@@ -13,9 +13,10 @@
         <button class="btn-rearrange" onclick="OpenModal()" id="OpenRearrangeModal"></button>
     </div>
     <div class="body-wrapper">
+        <!-- --------------------------------------------- NET 01 -------------------------------------------- -->
         <div class="component-net">
             <div class="card-nav">
-                <div class="menu" onclick="OpenModalNet01()" id="OpenModalNet01">
+                <div class="menu" onclick="OpenModalNet(1)" id="OpenModalNet01">
                     <div class="menu-icon"></div>
                 </div>
             </div>
@@ -37,9 +38,9 @@
                         Impressão PB
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="PBN1remove()">-</button>
+                        <button class="services-button" onclick="PrintRemove(1)">-</button>
                         <div class="services-qtd" id="PBN1">0</div>
-                        <button class="services-button" onclick="PBN1add()">+</button>
+                        <button class="services-button" onclick="PrintAdd(1)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -47,9 +48,9 @@
                         Impressão Color
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ColorN1remove()">-</button>
+                        <button class="services-button" onclick="ColorRemove(1)">-</button>
                         <div class="services-qtd" id="ColorN1">0</div>
-                        <button class="services-button" onclick="ColorN1add()">+</button>
+                        <button class="services-button" onclick="ColorAdd(1)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -57,32 +58,39 @@
                         Scanner
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ScanN1remove()">-</button>
+                        <button class="services-button" onclick="ScanRemove(1)">-</button>
                         <div class="services-qtd" id="ScanN1">0</div>
-                        <button class="services-button" onclick="ScanN1add()">+</button>
+                        <button class="services-button" onclick="ScanAdd(1)">+</button>
                     </div>
                 </div>
-                <div class="row DESATIVADO">
+                <div class="row">
                     <div class="col">
                         Valor
                     </div>
                     <div class="col">
-                        <input disabled type="text" id="ValueN1" name="input_value" class="services-value" />
+                        <input
+                            value="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number"
+                            maxlength = "4"
+                            id="input_value-n1" name="input_value-n1" class="services-value"
+                        />
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
-            <button class="button-start start" id="btn-start-n1" onclick="StartN1()">
+            <button class="button-start start" id="btn-start-n1" onclick="Start(1)">
                 Começar
                 <span class="Dialog"></span>
             </button>
-            <button class="button-start stop" id="btn-stop-n1" onclick="StopN1()">Finalizar</button>
-            <button class="button-start reset" id="btn-reset-n1" onclick="ResetN1()">Resetar</button>
-            <div class="final-value" id="final-value-N1">R$ 0,00</div>
+            <button class="button-start stop" id="btn-stop-n1" onclick="Stop(1)">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n1" onclick="Reset(1)">Resetar</button>
+            <div class="final-value" id="final-value-N1">R$ 0.00</div>
         </div>
+        <!-- --------------------------------------------- NET 02 -------------------------------------------- -->
         <div class="component-net">
             <div class="card-nav">
-                <div class="menu" onclick="OpenModalNet02()" id="OpenModalNet02">
+                <div class="menu" onclick="OpenModalNet(2)" id="OpenModalNet02">
                     <div class="menu-icon"></div>
                 </div>
             </div>
@@ -104,9 +112,9 @@
                         Impressão PB
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="PBN2remove()">-</button>
+                        <button class="services-button" onclick="PrintRemove(2)">-</button>
                         <div class="services-qtd" id="PBN2">0</div>
-                        <button class="services-button" onclick="PBN2add()">+</button>
+                        <button class="services-button" onclick="PrintAdd(2)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -114,9 +122,9 @@
                         Impressão Color
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ColorN2remove()">-</button>
+                        <button class="services-button" onclick="ColorRemove(2)">-</button>
                         <div class="services-qtd" id="ColorN2">0</div>
-                        <button class="services-button" onclick="ColorN2add()">+</button>
+                        <button class="services-button" onclick="ColorAdd(2)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -124,29 +132,36 @@
                         Scanner
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ScanN2remove()">-</button>
+                        <button class="services-button" onclick="ScanRemove(2)">-</button>
                         <div class="services-qtd" id="ScanN2">0</div>
-                        <button class="services-button" onclick="ScanN2add()">+</button>
+                        <button class="services-button" onclick="ScanAdd(2)">+</button>
                     </div>
                 </div>
-                <div class="row DESATIVADO">
+                <div class="row">
                     <div class="col">
                         Valor
                     </div>
                     <div class="col">
-                        <input disabled  type="text" id="input_value" name="input_value" class="services-value" />
+                        <input
+                            value="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number"
+                            maxlength = "4"
+                            id="input_value-n2" name="input_value-n2" class="services-value"
+                        />
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
-            <button class="button-start start" id="btn-start-n2" onclick="StartN2()">Começar</button>
-            <button class="button-start stop" id="btn-stop-n2" onclick="StopN2()">Finalizar</button>
-            <button class="button-start reset" id="btn-reset-n2" onclick="ResetN2()">Resetar</button>
-            <div class="final-value" id="final-value-N2">R$ 0,00</div>
+            <button class="button-start start" id="btn-start-n2" onclick="Start(2)">Começar</button>
+            <button class="button-start stop" id="btn-stop-n2" onclick="Stop(2)">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n2" onclick="Reset(2)">Resetar</button>
+            <div class="final-value" id="final-value-N2">R$ 0.00</div>
         </div>
+        <!-- --------------------------------------------- NET 03 -------------------------------------------- -->  
         <div class="component-net">
             <div class="card-nav">
-                <div class="menu" onclick="OpenModalNet03()" id="OpenModalNet03">
+                <div class="menu" onclick="OpenModalNet(3)" id="OpenModalNet03">
                     <div class="menu-icon"></div>
                 </div>
             </div>
@@ -168,9 +183,9 @@
                         Impressão PB
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="PBN3remove()">-</button>
+                        <button class="services-button" onclick="PrintRemove(3)">-</button>
                         <div class="services-qtd" id="PBN3">0</div>
-                        <button class="services-button" onclick="PBN3add()">+</button>
+                        <button class="services-button" onclick="PrintAdd(3)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -178,9 +193,9 @@
                         Impressão Color
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ColorN3remove()">-</button>
+                        <button class="services-button" onclick="ColorRemove(3)">-</button>
                         <div class="services-qtd" id="ColorN3">0</div>
-                        <button class="services-button" onclick="ColorN3add()">+</button>
+                        <button class="services-button" onclick="ColorAdd(3)">+</button>
                     </div>
                 </div>
                 <div class="row">
@@ -188,27 +203,34 @@
                         Scanner
                     </div>
                     <div class="col">
-                        <button class="services-button" onclick="ScanN3remove()">-</button>
+                        <button class="services-button" onclick="ScanRemove(3)">-</button>
                         <div class="services-qtd" id="ScanN3">0</div>
-                        <button class="services-button" onclick="ScanN3add()">+</button>
+                        <button class="services-button" onclick="ScanAdd(3)">+</button>
                     </div>
                 </div>
-                <div class="row DESATIVADO">
+                <div class="row">
                     <div class="col">
                         Valor
                     </div>
                     <div class="col">
-                        <input disabled  type="text" id="input_value" name="input_value" class="services-value" />
+                        <input
+                            value="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number"
+                            maxlength = "4"
+                            id="input_value-n3" name="input_value-n3" class="services-value"
+                        />
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
-            <button class="button-start start" id="btn-start-n3" onclick="StartN3()">Começar</button>
-            <button class="button-start stop" id="btn-stop-n3" onclick="StopN3()">Finalizar</button>
-            <button class="button-start reset" id="btn-reset-n3" onclick="ResetN3()">Resetar</button>
-            <div class="final-value" id="final-value-N3">R$ 0,00</div>
+            <button class="button-start start" id="btn-start-n3" onclick="Start(3)">Começar</button>
+            <button class="button-start stop" id="btn-stop-n3" onclick="Stop(3)">Finalizar</button>
+            <button class="button-start reset" id="btn-reset-n3" onclick="Reset(3)">Resetar</button>
+            <div class="final-value" id="final-value-N3">R$ 0.00</div>
         </div>
     </div>
+    <!-- ---------------------------------MODAL REARRANGE --------------------------------------------->
     <div id="RearrangeModal" class="modal" >
         <div class="modal-content">
             <div class="modal-row">
@@ -267,17 +289,31 @@
             </div>
         </div>
     </div>
+
+     <!-- ---------------------------------MODAL NET01 ------------------------------------>
      <div id="ModalNet01" class="modal" >
         <div class="modal-content">
-            <div class="UsageLog-title DESATIVADO">Alterar hora inicial:</div>
-            <div class="row NewHour DESATIVADO">
-                <input disabled type="text" id="NewHourN1" name="input_new_hour_N1" class="New-hour--input" />
+            <div class="UsageLog-title">Alterar hora inicial:</div>
+            <div class="row NewHour">
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewHourN1" name="input_new_hour_N1" class="New-hour--input"
+                />
                 &nbsp;:&nbsp;
-                <input disabled type="text" id="NewMinuteN1" name="input_new_hour_N1" class="New-hour--input" />
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewMinuteN1" name="input_new_hour_N1" class="New-hour--input"
+                />
                 &nbsp;
-                <button disabled class="ModalSubmit" id="SubmitNewHourN1">Alterar</button>
+                <button class="ModalSubmit" id="SubmitNewHourN1" onclick="ChangeHour(1)">Alterar</button>
             </div>
             <div class="divider"></div>
+
+
             <div class="UsageLog-Net01">
                 <div class="UsageLog-title">Registro de Uso Net 01:</div>
                 <div class="row UsageLog">
@@ -295,18 +331,33 @@
                     </div>
                 </div>
             </div>
-            <button class="button-modal--net" onclick="CloseModalNet01()">Fechar</button>
+
+
+            
+            <button class="button-modal--net" onclick="CloseModalNet(1)">Fechar</button>
         </div>
     </div>
+
+    <!-- ---------------------------------MODAL NET02 ----------------------------------->
     <div id="ModalNet02" class="modal" >
         <div class="modal-content">
-            <div class="UsageLog-title DESATIVADO">Alterar hora inicial:</div>
-            <div class="row NewHour DESATIVADO">
-                <input disabled type="text" id="NewHourN2" name="input_new_hour_N2" class="New-hour--input" />
+            <div class="UsageLog-title">Alterar hora inicial:</div>
+            <div class="row NewHour">
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewHourN2" name="input_new_hour_N2" class="New-hour--input"
+                />
                 &nbsp;:&nbsp;
-                <input disabled type="text" id="NewMinuteN2" name="input_new_hour_N2" class="New-hour--input" />
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewMinuteN2" name="input_new_hour_N2" class="New-hour--input"
+                />
                 &nbsp;
-                <button disabled class="ModalSubmit" id="SubmitNewHourN2">Alterar</button>
+                <button class="ModalSubmit" id="SubmitNewHourN2" onclick="ChangeHour(2)">Alterar</button>
             </div>
             <div class="divider"></div>
             <div class="UsageLog-Net02">
@@ -326,18 +377,30 @@
                     </div>
                 </div>
             </div>
-            <button class="button-modal--net" onclick="CloseModalNet02()">Fechar</button>
+            <button class="button-modal--net" onclick="CloseModalNet(2)">Fechar</button>
         </div>
     </div>
+
+    <!-- ---------------------------------MODAL NET03 -------------------------------->
     <div id="ModalNet03" class="modal" >
         <div class="modal-content">
-            <div class="UsageLog-title DESATIVADO">Alterar hora inicial:</div>
-            <div class="row NewHour DESATIVADO">
-                <input disabled type="text" id="NewHourN3" name="input_new_hour_N3" class="New-hour--input" />
+            <div class="UsageLog-title">Alterar hora inicial:</div>
+            <div class="row NewHour">
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewHourN3" name="input_new_hour_N3" class="New-hour--input"
+                />
                 &nbsp;:&nbsp;
-                <input disabled type="text" id="NewMinuteN3" name="input_new_hour_N3" class="New-hour--input" />
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "2"
+                    id="NewMinuteN3" name="input_new_hour_N3" class="New-hour--input"
+                />
                 &nbsp;
-                <button disabled class="ModalSubmit" id="SubmitNewHourN3">Alterar</button>
+                <button class="ModalSubmit" id="SubmitNewHourN3" onclick="ChangeHour(3)">Alterar</button>
             </div>
             <div class="divider"></div>
             <div class="UsageLog-Net03">
@@ -357,10 +420,11 @@
                     </div>
                 </div>
             </div>
-            <button class="button-modal--net" onclick="CloseModalNet03()">Fechar</button>
+            <button class="button-modal--net" onclick="CloseModalNet(3)">Fechar</button>
         </div>
     </div>
-    <footer>Desenvolvido por&nbsp;<a href="https://github.com/matheus-cunha" target="_blank">Matheus Cunha</a>&nbsp;  v1.1 @ 2025</footer>
+    <footer>Desenvolvido por&nbsp;<a href="https://github.com/matheus-cunha" target="_blank">Matheus Cunha</a>&nbsp;  v2.0 @ 2025</footer>
+    <!-- -----------------------------------------------------------------------------------TOASTR JS------------------------------------------------------------------------------------ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -404,36 +468,15 @@
 </body>
 </html>
 
-
-
-<!-- GESTÃO DE SPRINTS 
-SPRINT RELEASE 1.2 - ENTREGA DIA __/__/____
-    Refatorar JS    - Registro de nets usando tabela de objetos - Uma tabela para cada Net com armazenamento de 10 registros em modo fila 
-    Implementar JS  - Alterar hora inicial
-    Bug             - Submit rearrange sem ter nada selecionado
-    CSS             - Estilizar Modal Rearrange
-    Refatorar JS    - UsageList quando altera um pc via Rearrange da problema com o registro não ser finalizado na maquina 
-    Implementar     - Confirmar Encerramento do net
-    Implementar JS  - FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
-    Implementar     - Avisar em definir horario 
-    Implementar JS  - Ao clicar fora do Modal Fazer ele fechar
-
-    Implementar JS  - Funcionamento campo Valor Net 01 Net 02 e Net03
-        Atualizar em tempo real 
-        Mascaramento de R$ antes do valor 
-        Casa decimal 
-        Limitar caracteres 
-        Limitar numeros muito altos 
-        Valor inicial 0 
-        Mascara de entrada 
-        Pegue o valor e some ao final 
-
-SPRINT RELEASE Final - ENTREGA DIA __/__/____ 
-    Implementar      - Modo Help Explicando como funciona o sistema em um GIF ou manual
-    Fazer            - Subir no meu Git o codigo de BKP
-    BUG CSS          - Toaster fixado no modo celular
-    Implementar      - Responsividade geral testar
-    Implementar      - Preparar codigo para Go Live - Com Confirmação do Refresh da pagina
-    Fazer            - Garantir que o confirmar fechamento de guia esta OK
-    Bug              - rastreio do icone do modal Rearrange .menu-icon
+<!-- GESTÃO DE SPRINTS SPRINT RELEASE 2.1 - ENTREGA DIA 30/08/2025
+        Bug             - Submit rearrange sem ter nada selecionado
+        CSS             - Estilizar Modal Rearrange
+        Implementar JS  - FAZER O UNCHECK DE TODOS OS RADIAL BUTTONS
+        Implementar      - Modo Help Explicando como funciona o sistema em um GIF ou manual
+        Fazer            - Subir no meu Git o codigo de BKP
+        Implementar      - Responsividade geral testar
+        Implementar      - Preparar codigo para Go Live - Com Confirmação do Refresh da pagina
+        Fazer            - Garantir que o confirmar fechamento de guia esta OK
+        Bug              - rastreio do icone do modal Rearrange .menu-icon
+        Fazer            - Manual para Altera~]ao de preços futuros
 -->

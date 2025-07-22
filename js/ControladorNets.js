@@ -1,438 +1,416 @@
 "use strict";
-var Net15 = 5.00; 
-var Net30 = 6.00;
-var Net60 = 7.00;
-var IPBValue = 2;
-var ColorValue = 3;
-var ScanValue = 2;
-setInterval(() => { Timer(); }, 100);
 
-function Timer() {
-  var N1 = new Date(); 
-  Hour = N1.getHours();
-  Minute = N1.getMinutes();
-  Second = N1.getSeconds();
+// --------------------------------------------------------------------TABELA DE PREÇOS------------------------------------------------------
+const ValueNet15 = 5;
+const ValueNet30 = 6;
+const ValueNet60 = 7;
+const ValuePrint = 2;
+const ValueColor = 3;
+const ValueScan = 2;
 
-  if (StatusN1 == 1) {
-    FHN1 = Hour - IHN1;
-    FMN1 = Minute - IMN1;
-    FSN1 = Second - ISN1;
-    if (FSN1 < 0 ){FSN1 = FSN1 + 60;}
-    if (FHN1 > 0 && FMN1 >= 0) {NetHValueN1 = Net60 * FHN1;} 
-    else {
-        if (FHN1 > 0 && FMN1 < 0) {
-        FHN1 = FHN1 - 1;}}
-    if (FMN1 < 0) {FMN1 = FMN1 + 60;}
-    if (FMN1 <= 15) {NetMValueN1 = Net15;}
-    if (FMN1 <= 30 && FMN1 > 15) {NetMValueN1 = Net30;}
-    if (FMN1 <=59 && FMN1 > 30) {NetMValueN1 = Net60;}
-    document.getElementById('f_hour_net01').innerText =   (FHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_minute_net01').innerText = (FMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_second_net01').innerText = (FSN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    RefreshValueN1();
+// --------------------------------------------------------------------ARMAZENAMENTO NETS------------------------------------------------------
+const data = [
+  {
+    id: 1,
+    deviceName: "Net 01",
+    initialHours: 0,
+    initialMinutes: 0,
+    initialSeconds: 0,
+    finalHours: 0,
+    finalMinutes: 0,
+    finalSeconds: 0,
+    status: 0,
+    NofPrint: 0,
+    NofColor: 0,
+    NofScan: 0,
+    NofAdd: 0,
+    netFinalValue: 0,
+    finalValue: 0,
+  },{
+    id: 2,
+    deviceName: "Net 02",
+    initialHours: 0,
+    initialMinutes: 0,
+    initialSeconds: 0,
+    finalHours: 0,
+    finalMinutes: 0,
+    finalSeconds: 0,
+    status: 0,
+    NofPrint: 0,
+    NofColor: 0,
+    NofScan: 0,
+    NofAdd: 0,
+    netFinalValue: 0,
+    finalValue: 0,
+  },{
+    id: 3,
+    deviceName: "Net 03",
+    initialHours: 0,
+    initialMinutes: 0,
+    initialSeconds: 0,
+    finalHours: 0,
+    finalMinutes: 0,
+    finalSeconds: 0,
+    status: 0,
+    NofPrint: 0,
+    NofColor: 0,
+    NofScan: 0,
+    NofAdd: 0,
+    netFinalValue: 0,
+    finalValue: 0,
   }
+]
 
-  if (StatusN2 == 1) {
-    FHN2 = Hour - IHN2;
-    FMN2 = Minute - IMN2;
-    FSN2 = Second - ISN2;
-    if (FSN2 < 0 ){FSN2 = FSN2 + 60;}
-    if (FHN2 > 0 && FMN2 >= 0) {NetHValueN2 = Net60 * FHN2;} 
-    else {
-        if (FHN2 > 0 && FMN2 < 0) {
-        FHN2 = FHN2 - 1;}}
-    if (FMN2 < 0) {FMN2 = FMN2 + 60;}
-    if (FMN2 <= 15) {NetMValueN2 = Net15;}
-    if (FMN2 <= 30 && FMN2 > 15) {NetMValueN2 = Net30;}
-    if (FMN2 <=59 && FMN2 > 30) {NetMValueN2 = Net60;}
-    document.getElementById('f_hour_net02').innerText =   (FHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_minute_net02').innerText = (FMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_second_net02').innerText = (FSN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    RefreshValueN2();
-  }
+const UsageLog = [{
+    origin: 0,
+    arrivedHours: 0,
+    arrivedMinutes: 0,
+    closedHour: 0,
+    closedMinutes: 0, 
+    netValue: 0,
+    finalValue: 0,
+}]
 
-  if (StatusN3 == 1) {
-    FHN3 = Hour - IHN3;
-    FMN3 = Minute - IMN3;
-    FSN3 = Second - ISN3;
-    if (FSN3 < 0 ){FSN3 = FSN3 + 60;}
-    if (FHN3 > 0 && FMN3 >= 0) {NetHValueN3 = Net60 * FHN3;} 
-    else {
-        if (FHN3 > 0 && FMN3 < 0) {
-        FHN3 = FHN3 - 1;}}
-    if (FMN3 < 0) {FMN3 = FMN3 + 60;}
-    if (FMN3 <= 15) {NetMValueN3 = Net15;}
-    if (FMN3 <= 30 && FMN3 > 15) {NetMValueN3 = Net30;}
-    if (FMN3 <=59 && FMN3 > 30) {NetMValueN3 = Net60;}
-    document.getElementById('f_hour_net03').innerText =   (FHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_minute_net03').innerText = (FMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    document.getElementById('f_second_net03').innerText = (FSN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    RefreshValueN3();
-  }
+// --------------------------------------------------------------------USER FUNCTIONS------------------------------------------------------
+
+function getNets() {return data;}
+function getNet(id) {return data.find((d) => d.id === id);}
+
+setInterval(() => {Countdown()}, 200);
+
+function Countdown(){
+  Timer(1);
+  Timer(2);
+  Timer(3);
 }
 
-var Hour;
-var Minute;
-var Second;
-var IHN1;
-var IMN1;
-var ISN1;
-var FHN1;
-var FMN1;
-var FSN1;
-var StatusN1 = 0;
-var ServicesN1 = 0;
-var OtherN1 = 0;
-var NetMValueN1 = 0;
-var NetHValueN1 = 0;
-var FinalValueN1 = 0;
-var PBN1 = 0;
-var ColorN1 = 0;
-var ScanN1 = 0;
-
-function StartN1() {
-  var N1 = new Date(); 
-  RefreshValueN1();
-  IHN1 = N1.getHours();
-  IMN1 = N1.getMinutes();
-  ISN1 = N1.getSeconds();
-  document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  StatusN1 = 1;    
-  document.getElementById("btn-start-n1").style.visibility = "hidden";
-  document.getElementById("btn-stop-n1").style.visibility = "visible";
-  registerInitialUsageN1();
-}
-
-function StopN1() {
-  var N1 = new Date(); 
-  FHN1 = N1.getHours();
-  FMN1 = N1.getMinutes();
-  FSN1 = N1.getSeconds();
-  StatusN1 = 2;    
-  document.getElementById("btn-stop-n1").style.visibility = "hidden";
-  document.getElementById("btn-reset-n1").style.visibility = "visible";
-
-  toastr.success('Tempo do NET01 - Encerrado');
-  registerFinalUsageN1();
-}
-
-function ResetN1(){
-  StatusN1 = 0;    
-  document.getElementById("btn-reset-n1").style.visibility = "hidden";
-  document.getElementById("btn-start-n1").style.visibility = "visible";
-  FinalValueN1 = 0;
-  ServicesN1 = 0;
-  FinalValueN1 = 0;
-  NetMValueN1 = 0;
-  NetHValueN1 = 0;
-  OtherN1 = 0;
-  IHN1 = 0;
-  IMN1 = 0;
-  ISN1 = 0;
-  FHN1 = 0;
-  FMN1 = 0;
-  FSN1 = 0;
-  PBN1 = 0;
-  ColorN1 = 0;
-  ScanN1 = 0;
-  document.getElementById('i_hour_net01').innerText = "00";
-  document.getElementById('i_minute_net01').innerText = "00";
-  document.getElementById('i_second_net01').innerText = "00";
-  document.getElementById('f_hour_net01').innerText = "00";
-  document.getElementById('f_minute_net01').innerText = "00";
-  document.getElementById('f_second_net01').innerText = "00";
-  RefreshValueN1()
-}
-
-function RefreshValueN1(){
-  FinalValueN1=0;
-  OtherN1 = (PBN1 * IPBValue) + (ColorN1 * ColorValue) + (ScanN1 * ScanValue);
-  FinalValueN1 = ServicesN1 + FinalValueN1 + NetMValueN1 + NetHValueN1 + OtherN1;
-  document.getElementById('final-value-N1').innerText = ("R$ " + 
-    parseFloat(FinalValueN1).toFixed(2)
-  );
-  document.getElementById('PBN1').innerText = PBN1;
-  document.getElementById('ColorN1').innerText = ColorN1;
-  document.getElementById('ScanN1').innerText = ScanN1;
-}
-
-function  PBN1add(){
-  PBN1 = PBN1 + 1;
-  RefreshValueN1();
-}
-
-function PBN1remove(){
-  if (PBN1 > 0) {
-    PBN1 = PBN1 - 1;
-    RefreshValueN1();
-  } else {}
-}
-
-function  ColorN1add(){
-  ColorN1 = ColorN1 + 1;
-  RefreshValueN1();
-}
-
-function ColorN1remove(){
-  if (ColorN1 > 0) {
-    ColorN1 = ColorN1 - 1;
-    RefreshValueN1();
-  } else {}
-}
-
-function  ScanN1add(){
-  ScanN1 = ScanN1 + 1;
-  RefreshValueN1();
-}
-
-function ScanN1remove(){
-  if (ScanN1 > 0) {
-  ScanN1 = ScanN1 - 1;
-  RefreshValueN1();
-  } else {}
-}
-
-var IHN2;
-var IMN2;
-var ISN2;
-var FHN2;
-var FMN2;
-var FSN2;
-var StatusN2 = 0;
-var ServicesN2 = 0;
-var OtherN2 = 0;
-var NetMValueN2 = 0;
-var NetHValueN2 = 0;
-var FinalValueN2 = 0;
-var PBN2 = 0;
-var ColorN2 = 0;
-var ScanN2 = 0;
-
-function StartN2() {
-  var N2 = new Date(); 
-  RefreshValueN2();
-  IHN2 = N2.getHours();
-  IMN2 = N2.getMinutes();
-  ISN2 = N2.getSeconds();
-  document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  StatusN2 = 1;    
-  document.getElementById("btn-start-n2").style.visibility = "hidden";
-  document.getElementById("btn-stop-n2").style.visibility = "visible";
-  registerInitialUsageN2();
-}
-
-function StopN2() {
-  var N2 = new Date(); 
-  FHN2 = N2.getHours();
-  FMN2 = N2.getMinutes();
-  FSN2 = N2.getSeconds();
-  StatusN2 = 2;    
-  document.getElementById("btn-stop-n2").style.visibility = "hidden";
-  document.getElementById("btn-reset-n2").style.visibility = "visible";
-  toastr.success('Tempo do NET02 - Encerrado');
-  registerFinalUsageN2();
-}
-
-function ResetN2(){
-  StatusN2 = 0;    
-  document.getElementById("btn-reset-n2").style.visibility = "hidden";
-  document.getElementById("btn-start-n2").style.visibility = "visible";
-  FinalValueN2 = 0;
-  ServicesN2 = 0;
-  FinalValueN2 = 0;
-  NetMValueN2 = 0;
-  NetHValueN2 = 0;
-  OtherN2 = 0;
-  IHN2 = 0;
-  IMN2 = 0;
-  ISN2 = 0;
-  FHN2 = 0;
-  FMN2 = 0;
-  FSN2 = 0;
-  PBN2 = 0;
-  ColorN2 = 0;
-  ScanN2 = 0;
-  document.getElementById('i_hour_net02').innerText = "00";
-  document.getElementById('i_minute_net02').innerText = "00";
-  document.getElementById('i_second_net02').innerText = "00";
-  document.getElementById('f_hour_net02').innerText = "00";
-  document.getElementById('f_minute_net02').innerText = "00";
-  document.getElementById('f_second_net02').innerText = "00";
-  RefreshValueN2()
-}
-
-function RefreshValueN2(){
-  FinalValueN2=0;
-  OtherN2 = (PBN2 * IPBValue) + (ColorN2 * ColorValue) + (ScanN2 * ScanValue);
-  FinalValueN2 = ServicesN2 + FinalValueN2 + NetMValueN2 + NetHValueN2 + OtherN2;
-  document.getElementById('final-value-N2').innerText = ("R$ " + 
-    parseFloat(FinalValueN2).toFixed(2)
-  );
-  document.getElementById('PBN2').innerText = PBN2;
-  document.getElementById('ColorN2').innerText = ColorN2;
-  document.getElementById('ScanN2').innerText = ScanN2;
-}
-
-function  PBN2add(){
-  PBN2 = PBN2 + 1;
-  RefreshValueN2();
-}
-
-function PBN2remove(){
-  if (PBN2 > 0) {
-    PBN2 = PBN2 - 1;
-    RefreshValueN2();
-  }
-}
-
-function  ColorN2add(){
-  ColorN2 = ColorN2 + 1;
-  RefreshValueN2();
-}
-
-function ColorN2remove(){
-  if (ColorN2 > 0) {
-    ColorN2 = ColorN2 - 1;
-    RefreshValueN2();
-  }
-}
-
-function  ScanN2add(){
-  ScanN2 = ScanN2 + 1;
-  RefreshValueN2();
-}
-
-function ScanN2remove(){
-  if (ScanN2 > 0) {
-  ScanN2 = ScanN2 - 1;
-  RefreshValueN2();
-  }
-}
-
-var IHN3;
-var IMN3;
-var ISN3;
-var FHN3;
-var FMN3;
-var FSN3;
-var StatusN3 = 0;
-var ServicesN3 = 0;
-var OtherN3 = 0;
-var NetMValueN3 = 0;
-var NetHValueN3 = 0;
-var FinalValueN3 = 0;
-var PBN3 = 0;
-var ColorN3 = 0;
-var ScanN3 = 0;
-
-function StartN3() {
+function Timer(NetID){
+  const NetAcc = getNet(NetID);
   var N3 = new Date(); 
-  RefreshValueN3();
-  IHN3 = N3.getHours();
-  IMN3 = N3.getMinutes();
-  ISN3 = N3.getSeconds();
-  document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  StatusN3 = 1;    
-  document.getElementById("btn-start-n3").style.visibility = "hidden";
-  document.getElementById("btn-stop-n3").style.visibility = "visible";
-  registerInitialUsageN3();
+  var Hour = N3.getHours();
+  var Minute = N3.getMinutes();
+  var Second = N3.getSeconds();
+  var AddValue = document.getElementById('input_value-n' + NetID.toString()).value;
+
+  if (AddValue >= 0){
+    NetAcc.NofAdd = parseFloat(AddValue);
+    RefreshValue(NetID);
+    if (AddValue == ""){
+      NetAcc.NofAdd = 0;
+      RefreshValue(NetID);
+    }
+  }
+  else{
+    document.getElementById('input_value-n' + NetID.toString()).value = 0;
+    toastr.error('Este campo não aceita números negativos');
+  }
+
+  if (NetAcc.status == 1){
+    var hourCost = 0;
+    var minutsCost = 0;
+    NetAcc.finalHours = Hour - NetAcc.initialHours;
+    NetAcc.finalMinutes = Minute - NetAcc.initialMinutes;
+    NetAcc.finalSeconds = Second - NetAcc.initialSeconds;
+    
+    if (NetAcc.finalSeconds < 0 ){NetAcc.finalSeconds = NetAcc.finalSeconds + 60;};
+    if (NetAcc.finalHours > 0 && NetAcc.finalMinutes >= 0) {hourCost = ValueNet60 * NetAcc.finalHours;}
+    else{if (NetAcc.finalHours > 0 && NetAcc.finalMinutes < 0) {NetAcc.finalHours = NetAcc.finalHours - 1;}};
+    if (NetAcc.finalMinutes < 0) {NetAcc.finalMinutes = NetAcc.finalMinutes + 60;}
+    if (NetAcc.finalMinutes <= 15) {minutsCost = ValueNet15;};
+    if (NetAcc.finalMinutes <= 30 && NetAcc.finalMinutes > 15) {minutsCost = ValueNet30;};
+    if (NetAcc.finalMinutes <=59 && NetAcc.finalMinutes > 30) {minutsCost = ValueNet60;}   
+    document.getElementById('f_hour_net0' + NetID.toString()).innerText   = (NetAcc.finalHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_minute_net0' + NetID.toString()).innerText = (NetAcc.finalMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById('f_second_net0' + NetID.toString()).innerText = (NetAcc.finalSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+    var SumServices = 
+      (NetAcc.NofPrint * ValuePrint) + 
+      (NetAcc.NofColor * ValueColor) + 
+      (NetAcc.NofScan * ValueScan)
+    ;
+    NetAcc.netFinalValue = hourCost + minutsCost;
+    NetAcc.finalValue = SumServices + NetAcc.NofAdd + NetAcc.netFinalValue;
+
+    document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ " + 
+      parseFloat(NetAcc.finalValue).toFixed(2)
+    );
+  }
 }
 
-function StopN3() {
-  var N3 = new Date(); 
-  FHN3 = N3.getHours();
-  FMN3 = N3.getMinutes();
-  FSN3 = N3.getSeconds();
-  StatusN3 = 2;    
-  document.getElementById("btn-stop-n3").style.visibility = "hidden";
-  document.getElementById("btn-reset-n3").style.visibility = "visible";
-  toastr.success('Tempo do NET03 - Encerrado');
-  registerFinalUsageN3();
+function Start(NetID){
+  var N1 = new Date(); 
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.initialHours= N1.getHours();
+  NetAcc.initialMinutes= N1.getMinutes();
+  NetAcc.initialSeconds= N1.getSeconds();
+  
+  RefreshValue(NetID);
+  
+  document.getElementById('i_hour_net0' + NetID.toString()).innerText = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_minute_net0' + NetID.toString()).innerText = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_second_net0' + NetID.toString()).innerText = (NetAcc.initialSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  
+  NetAcc.status = 1;
+
+  document.getElementById("btn-start-n" + NetID.toString()).style.visibility = "hidden";
+  document.getElementById("btn-stop-n" + NetID.toString()).style.visibility = "visible";
+
+  RegisterLog(NetID);
 }
 
-function ResetN3(){
-  StatusN3 = 0;    
-  document.getElementById("btn-reset-n3").style.visibility = "hidden";
-  document.getElementById("btn-start-n3").style.visibility = "visible";
-  FinalValueN3 = 0;
-  ServicesN3 = 0;
-  FinalValueN3 = 0;
-  NetMValueN3 = 0;
-  NetHValueN3 = 0;
-  OtherN3 = 0;
-  IHN3 = 0;
-  IMN3 = 0;
-  ISN3 = 0;
-  FHN3 = 0;
-  FMN3 = 0;
-  FSN3 = 0;
-  PBN3 = 0;
-  ColorN3 = 0;
-  ScanN3 = 0;
-  document.getElementById('i_hour_net03').innerText = "00";
-  document.getElementById('i_minute_net03').innerText = "00";
-  document.getElementById('i_second_net03').innerText = "00";
-  document.getElementById('f_hour_net03').innerText = "00";
-  document.getElementById('f_minute_net03').innerText = "00";
-  document.getElementById('f_second_net03').innerText = "00";
-  RefreshValueN3();
-}
+function RefreshValue(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  document.getElementById('PBN' + NetID.toString()).innerText = NetAcc.NofPrint;
+  document.getElementById('ColorN' + NetID.toString()).innerText = NetAcc.NofColor;
+  document.getElementById('ScanN' + NetID.toString()).innerText = NetAcc.NofScan;
+  
+  var SumServices = 
+    (NetAcc.NofPrint * ValuePrint) + 
+    (NetAcc.NofColor * ValueColor) + 
+    (NetAcc.NofScan * ValueScan)
+  ;
+  NetAcc.finalValue = SumServices + NetAcc.NofAdd + NetAcc.netFinalValue;
 
-function RefreshValueN3(){
-  FinalValueN3=0;
-  OtherN3 = (PBN3 * IPBValue) + (ColorN3 * ColorValue) + (ScanN3 * ScanValue);
-  FinalValueN3 = ServicesN3 + FinalValueN3 + NetMValueN3 + NetHValueN3 + OtherN3;
-  document.getElementById('final-value-N3').innerText = ("R$ " + 
-    parseFloat(FinalValueN3).toFixed(2)
+  document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ " + 
+    parseFloat(NetAcc.finalValue).toFixed(2)
   );
-  document.getElementById('PBN3').innerText = PBN3;
-  document.getElementById('ColorN3').innerText = ColorN3;
-  document.getElementById('ScanN3').innerText = ScanN3;
 }
 
-function  PBN3add(){
-  PBN3 = PBN3 + 1;
-  RefreshValueN3();
+function Stop(NetID) {
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.status = 2;    
+  document.getElementById("btn-stop-n" + NetID.toString()).style.visibility = "hidden";
+  document.getElementById("btn-reset-n" + NetID.toString()).style.visibility = "visible";
+  document.getElementById("btn-reset-n" + NetID.toString()).disabled = true;
+  document.getElementById("btn-reset-n" + NetID.toString()).style.opacity = 0.5;
+  toastr.success('Tempo do NET0' + NetID.toString() + '- Encerrado');
+
+  setTimeout(function(){ 
+    document.getElementById("btn-reset-n" + NetID.toString()).style.opacity = 1;
+    document.getElementById("btn-reset-n" + NetID.toString()).disabled = false;
+  }, 2000);
+
+  CloseLog(NetID);
 }
 
-function PBN3remove(){
-  if (PBN3 > 0) {
-    PBN3 = PBN3 - 1;
-    RefreshValueN3();
+function Reset(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.status = 0;   
+  NetAcc.initialHours = 0;
+  NetAcc.initialMinutes = 0;
+  NetAcc.initialSeconds = 0;
+  NetAcc.finalHours = 0;
+  NetAcc.finalMinutes = 0;
+  NetAcc.finalSeconds = 0;
+  NetAcc.status = 0;
+  NetAcc.NofPrint = 0;
+  NetAcc.NofColor = 0;
+  NetAcc.NofScan = 0;
+  NetAcc.NofAdd = 0;
+  NetAcc.netFinalValue = 0;
+  NetAcc.finalValue = 0;
+
+  document.getElementById('input_value-n' + NetID.toString()).value = 0;
+  document.getElementById("btn-reset-n" + NetID.toString()).style.visibility = "hidden";
+  document.getElementById("btn-start-n" + NetID.toString()).style.visibility = "visible";
+  document.getElementById('i_hour_net0' + NetID.toString()).innerText = "00";
+  document.getElementById('i_minute_net0' + NetID.toString()).innerText = "00";
+  document.getElementById('i_second_net0' + NetID.toString()).innerText = "00";
+  document.getElementById('f_hour_net0' + NetID.toString()).innerText = "00";
+  document.getElementById('f_minute_net0' + NetID.toString()).innerText = "00";
+  document.getElementById('f_second_net0' + NetID.toString()).innerText = "00";    
+  document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ 0.00");
+  RefreshValue(NetID);
+}
+
+function  PrintAdd(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.NofPrint = NetAcc.NofPrint + 1;
+  RefreshValue(NetID);
+}
+
+function PrintRemove(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  if (NetAcc.NofPrint > 0) {
+    NetAcc.NofPrint = NetAcc.NofPrint - 1;
+    RefreshValue(NetID);
+  } else {}
+}
+
+function  ColorAdd(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.NofColor = NetAcc.NofColor + 1;
+  RefreshValue(NetID);
+}
+
+function ColorRemove(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  if (NetAcc.NofColor > 0) {
+    NetAcc.NofColor = NetAcc.NofColor - 1;
+    RefreshValue(NetID);
+  } else {}
+}
+
+function  ScanAdd(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  NetAcc.NofScan = NetAcc.NofScan + 1;
+  RefreshValue(NetID);
+}
+
+function ScanRemove(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  if (NetAcc.NofScan > 0) {
+  NetAcc.NofScan = NetAcc.NofScan - 1;
+  RefreshValue(NetID);
+  } else {}
+}
+
+// --------------------------------------------------------------------MODAL NETS------------------------------------------------------
+
+function OpenModalNet(NetID){
+
+  document.getElementById("InitialListN" + NetID.toString()).innerHTML = '';
+  document.getElementById("FinalListN" + NetID.toString()).innerHTML = '';
+  document.getElementById("FinalListValueN" + NetID.toString()).innerHTML = '';
+
+  const NetAcc = data.find(computer => computer.id === NetID);
+  document.getElementById("ModalNet0" + NetID.toString()).style.display = "block";
+  document.getElementById("NewHourN" + NetID.toString()).disabled = true;
+  document.getElementById("NewMinuteN" + NetID.toString()).disabled = true;
+  document.getElementById("SubmitNewHourN" + NetID.toString()).disabled = true;
+  document.getElementById("SubmitNewHourN" + NetID.toString()).style.opacity = 0.5;
+  document.getElementById("NewHourN" + NetID.toString()).value = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById("NewMinuteN" + NetID.toString()).value = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+  if (NetAcc.status==1){
+    document.getElementById("NewHourN" + NetID.toString()).disabled = false;
+    document.getElementById("NewMinuteN" + NetID.toString()).disabled = false;
+    document.getElementById("SubmitNewHourN" + NetID.toString()).disabled = false;
+    document.getElementById("SubmitNewHourN" + NetID.toString()).style.opacity = 1;
+  }
+
+  for (let i = 0; i < UsageLog.length; i++) {
+    if (UsageLog[i].origin == NetID) {
+      var InitialList = document.getElementById('InitialListN'+ NetID.toString());
+      var listItem = document.createElement('li');
+      listItem.textContent = `Entrada: ${UsageLog[i].arrivedHours.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${UsageLog[i].arrivedMinutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
+      InitialList.appendChild(listItem);
+
+      var FinalList = document.getElementById('FinalListN' + NetID.toString());
+      var listItem2 = document.createElement('li');
+      listItem2.textContent = `Saída: ${UsageLog[i].closedHour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${UsageLog[i].closedMinutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
+      FinalList.appendChild(listItem2);
+
+      var FinalListValue = document.getElementById('FinalListValueN' + NetID.toString());
+      var listItem3 = document.createElement('li');
+      listItem3.textContent = `R$${parseFloat(UsageLog[i].finalValue).toFixed(2)}`;      
+      FinalListValue.appendChild(listItem3);
+    }
   }
 }
 
-function  ColorN3add(){
-  ColorN3 = ColorN3 + 1;
-  RefreshValueN3();
+function CloseModalNet(NetID){
+  document.getElementById("ModalNet0" + NetID.toString()).style.display = "none";
 }
 
-function ColorN3remove(){
-  if (ColorN3 > 0) {
-    ColorN3 = ColorN3 - 1;
-    RefreshValueN3();
+window.onclick = function(event) {
+  if (event.target == ModalNet01) {
+    ModalNet01.style.display = "none";
+  }
+  if (event.target == ModalNet02) {
+    ModalNet02.style.display = "none";
+  }
+  if (event.target == ModalNet03) {
+    ModalNet03.style.display = "none";
   }
 }
 
-function  ScanN3add(){
-  ScanN3 = ScanN3 + 1;
-  RefreshValueN3();
-}
+function ChangeHour(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  var NewHour , NewMinute;
+  NewHour = document.getElementById("NewHourN" + NetID.toString()).value;
+  NewMinute = document.getElementById("NewMinuteN" + NetID.toString()).value;
+  var N3 = new Date(); 
+  var ActualHour = N3.getHours();
+  var ActualMinutes = N3.getMinutes();
 
-function ScanN3remove(){
-  if (ScanN3 > 0) {
-  ScanN3 = ScanN3 - 1;
-  RefreshValueN3();
+  if( NewHour > 0 && NewHour < 24 && NewMinute >= 0 && NewMinute < 60 ){
+    if( (ActualHour - NewHour) >= 0){
+      if( (ActualHour - NewHour) == 0 && NewMinute < ActualMinutes){
+        NetAcc.initialHours = parseInt(NewHour);
+        NetAcc.initialMinutes = parseInt(NewMinute);
+        document.getElementById('i_hour_net0' + NetID.toString()).innerText   = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        document.getElementById('i_minute_net0' + NetID.toString()).innerText = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        toastr.success('Tempo do NET0' + NetID.toString() + '- Atualizado');
+        CloseModalNet(NetID)
+      }
+      if( (ActualHour - NewHour) == 0 && NewMinute > ActualMinutes){
+        document.getElementById("NewHourN" + NetID.toString()).value = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        document.getElementById("NewMinuteN" + NetID.toString()).value = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        toastr.error('O tempo não pode ser maior que a hora atual');
+      }
+      else{
+        NetAcc.initialHours = parseInt(NewHour);
+        NetAcc.initialMinutes = parseInt(NewMinute);
+        document.getElementById('i_hour_net0' + NetID.toString()).innerText   = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        document.getElementById('i_minute_net0' + NetID.toString()).innerText = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+        toastr.success('Tempo do NET0' + NetID.toString() + '- Atualizado');
+        CloseModalNet(NetID)
+      }
+    }else{
+    document.getElementById("NewHourN" + NetID.toString()).value = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById("NewMinuteN" + NetID.toString()).value = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    toastr.error('O tempo não pode ser maior que a hora atual');
+    }
+  }else{
+    document.getElementById("NewHourN" + NetID.toString()).value = (NetAcc.initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    document.getElementById("NewMinuteN" + NetID.toString()).value = (NetAcc.initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    toastr.error('Valor inserido invalido - Tente novamente');
+  }
+  for (let i = 0; i < UsageLog.length; i++) {
+    if (UsageLog[i].origin == NetID && UsageLog[i].closedHour == 0) {
+      UsageLog[i].arrivedHours = parseInt(NewHour);
+      UsageLog[i].arrivedMinutes = parseInt(NewMinute);
+      break;
+    }
   }
 }
 
+function RegisterLog(NetID){
+  const NetAcc = data.find(computer => computer.id === NetID);
+  const Log = UsageLog.slice(0);
+  Log.origin = NetID;
+  Log.arrivedHours = NetAcc.initialHours;
+  Log.arrivedMinutes = NetAcc.initialMinutes;
+  Log.closedHour = 0;
+  Log.closedMinutes = 0;
+  Log.netValue = 0;
+  Log.finalValue = 0;
+  UsageLog.push(Log);
+}
+
+function CloseLog(NetID){
+  for (let i = 0; i < UsageLog.length; i++) {
+  if (UsageLog[i].origin == NetID && UsageLog[i].closedHour == 0) {
+    const NetAcc = data.find(computer => computer.id === NetID);
+    var N1 = new Date(); 
+    UsageLog[i].closedHour = N1.getHours();
+    UsageLog[i].closedMinutes = N1.getMinutes();
+    UsageLog[i].netValue = NetAcc.netFinalValue;
+    UsageLog[i].finalValue = NetAcc.finalValue;
+    break;
+    }
+  }
+}
+
+// --------------------------------------------------------------------MODAL REARRANGE------------------------------------------------------
 var modal = document.getElementById("RearrangeModal");
+var btn = document.getElementById("OpenRearrangeModal");
+
+function OpenModal(){
+  modal.style.display = "block";
+  RefreshModal();
+}
 
 function CloseModal(){
   modal.style.display = "none";
@@ -444,342 +422,89 @@ window.onclick = function(event) {
   }
 }
 
-function OpenModal(){
-  modal.style.display = "block";
-  RefreshModal();
+function RefreshModal(){
+  for (let i = 1; i < data.length+1; i++) {   
+    const NetAcc = data.find(computer => computer.id === i);
+    document.getElementById("from-net0" + i.toString() + "-label").style.color = "#000000";
+    document.getElementById("from-net0" + i.toString() ).disabled=false;
+    document.getElementById("to-net0" + i.toString() + "-label").style.color = "#000000";
+    document.getElementById("to-net0" + i.toString() ).disabled=false;
+
+    if (NetAcc.status == 0 || NetAcc.status == 2){
+      document.getElementById("from-net0" + i.toString() + "-label").style.color = "#0001022d";
+      document.getElementById("from-net0" + i.toString() ).disabled=true;
+    }
+
+    if (NetAcc.status == 1 || NetAcc.status == 2){
+      document.getElementById("to-net0" + i.toString() + "-label").style.color = "#0001022d";
+      document.getElementById("to-net0" + i.toString() ).disabled=true;
+    }
+  }
 }
 
 function SubmitModal(){
   if (document.getElementById('from-net01').checked) {
-    if (document.getElementById('to-net02').checked){4
-      IHN2 = IHN1;
-      IMN2 = IMN1;
-      ISN2 = ISN1;
-      FHN2 = FHN1;
-      FMN2 = FMN1;
-      FSN2 = FSN1;
-      StatusN2 = StatusN1;
-      ServicesN2 = ServicesN1;
-      OtherN2 = OtherN1;
-      NetMValueN2 = NetMValueN1;
-      NetHValueN2 = NetHValueN1;
-      FinalValueN2 = FinalValueN1;
-      PBN2 = PBN1;
-      ColorN2 = ColorN1;
-      ScanN2 = ScanN1;
-      document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById("btn-stop-n1").style.visibility = "hidden";
-      document.getElementById("btn-start-n2").style.visibility = "hidden";
-      if(StatusN2=1){
-        document.getElementById("btn-stop-n2").style.visibility = "visible";
-      }
-      else{
-        document.getElementById("btn-reset-n2").style.visibility = "visible";
-      }
+    if (document.getElementById('to-net02').checked){
+      ModalNetChageValues(0,1);
     }
-
     if (document.getElementById('to-net03').checked){
-      IHN3 = IHN1;
-      IMN3 = IMN1;
-      ISN3 = ISN1;
-      FHN3 = FHN1;
-      FMN3 = FMN1;
-      FSN3 = FSN1;
-      StatusN3 = StatusN1;
-      ServicesN3 = ServicesN1;
-      OtherN3 = OtherN1;
-      NetMValueN3 = NetMValueN1;
-      NetHValueN3 = NetHValueN1;
-      FinalValueN2 = FinalValueN1;
-      PBN3 = PBN1;
-      ColorN3 = ColorN1;
-      ScanN3 = ScanN1;
-      document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById("btn-stop-n1").style.visibility = "hidden";
-      document.getElementById("btn-start-n3").style.visibility = "hidden";
-      if(StatusN3=1){
-        document.getElementById("btn-stop-n3").style.visibility = "visible";
-      }
-      else{
-        document.getElementById("btn-reset-n3").style.visibility = "visible";
-      }
+      ModalNetChageValues(0,2);
     }
-    ResetN1();
   }
-  
   if (document.getElementById('from-net02').checked) {
     if (document.getElementById('to-net01').checked){
-      IHN1 = IHN2;
-      IMN1 = IMN2;
-      ISN1 = ISN2;
-      FHN1 = FHN2;
-      FMN1 = FMN2;
-      FSN1 = FSN2;
-      StatusN1 = StatusN2;
-      ServicesN1 = ServicesN2;
-      OtherN1 = OtherN2;
-      NetMValueN1 = NetMValueN2;
-      NetHValueN1 = NetHValueN2;
-      FinalValueN1 = FinalValueN2;
-      PBN1 = PBN2;
-      ColorN1 = ColorN2;
-      ScanN1 = ScanN2;
-      document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById("btn-stop-n2").style.visibility = "hidden";
-      document.getElementById("btn-start-n1").style.visibility = "hidden";
-      if(StatusN2=1){
-        document.getElementById("btn-stop-n1").style.visibility = "visible";
-      }
-      else{
-        document.getElementById("btn-reset-n2").style.visibility = "visible";
-      }
+      ModalNetChageValues(1,0);
     }
-
     if (document.getElementById('to-net03').checked){
-      IHN3 = IHN2;
-      IMN3 = IMN2;
-      ISN3 = ISN2;
-      FHN3 = FHN2;
-      FMN3 = FMN2;
-      FSN3 = FSN2;
-      StatusN3 = StatusN2;
-      ServicesN3 = ServicesN2;
-      OtherN3 = OtherN2;
-      NetMValueN3 = NetMValueN2;
-      NetHValueN3 = NetHValueN2;
-      FinalValueN2 = FinalValueN2;
-      PBN3 = PBN2;
-      ColorN3 = ColorN2;
-      ScanN3 = ScanN2;
-      document.getElementById('i_hour_net03').innerText = (IHN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_minute_net03').innerText = (IMN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net03').innerText = (ISN3).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById("btn-stop-n2").style.visibility = "hidden";
-      document.getElementById("btn-start-n3").style.visibility = "hidden";
-      if(StatusN3=1){
-        document.getElementById("btn-stop-n3").style.visibility = "visible";
-      }
-      else{
-        document.getElementById("btn-reset-n3").style.visibility = "visible";
-      }
+      ModalNetChageValues(1,2);
     }
-    ResetN2();
   }
-
   if (document.getElementById('from-net03').checked){
     if (document.getElementById('to-net01').checked){
-      IHN1 = IHN3;
-      IMN1 = IMN3;
-      ISN1 = ISN3;
-      FHN1 = FHN3;
-      FMN1 = FMN3;
-      FSN1 = FSN3;
-      StatusN1 = StatusN3;
-      ServicesN1 = ServicesN3;
-      OtherN1 = OtherN3;
-      NetMValueN1 = NetMValueN3;
-      NetHValueN1 = NetHValueN3;
-      FinalValueN1 = FinalValueN3;
-      PBN1 = PBN3;
-      ColorN1 = ColorN3;
-      ScanN1 = ScanN3;
-      document.getElementById('i_hour_net01').innerText = (IHN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_minute_net01').innerText = (IMN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById('i_second_net01').innerText = (ISN1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-      document.getElementById("btn-stop-n3").style.visibility = "hidden";
-      document.getElementById("btn-start-n1").style.visibility = "hidden";
-      if(StatusN3=1){
-        document.getElementById("btn-stop-n1").style.visibility = "visible";
-      }
-      else{
-        document.getElementById("btn-reset-n1").style.visibility = "visible";
-      }
+      ModalNetChageValues(2,0);
     }
-
-    if (document.getElementById('from-net03').checked){
-      if (document.getElementById('to-net02').checked){
-        IHN2 = IHN3;
-        IMN2 = IMN3;
-        ISN2 = ISN3;
-        FHN2 = FHN3;
-        FMN2 = FMN3;
-        FSN2 = FSN3;
-        StatusN2 = StatusN3;
-        ServicesN2 = ServicesN3;
-        OtherN2 = OtherN3;
-        NetMValueN2 = NetMValueN3;
-        NetHValueN2 = NetHValueN3;
-        FinalValueN2 = FinalValueN3;
-        PBN2 = PBN3;
-        ColorN2 = ColorN3;
-        ScanN2 = ScanN3;
-        document.getElementById('i_hour_net02').innerText = (IHN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-        document.getElementById('i_minute_net02').innerText = (IMN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-        document.getElementById('i_second_net02').innerText = (ISN2).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-        document.getElementById("btn-stop-n3").style.visibility = "hidden";
-        document.getElementById("btn-start-n2").style.visibility = "hidden";
-        if(StatusN2=1){
-          document.getElementById("btn-stop-n2").style.visibility = "visible";
-        }
-        else{
-          document.getElementById("btn-reset-n2").style.visibility = "visible";
-        }
-      }
+    if (document.getElementById('to-net02').checked){
+      ModalNetChageValues(2,1);
     }
-    ResetN3();
   }
   toastr.info('Troca efetuada com sucesso');
   CloseModal();
 }
 
-function RefreshModal(){
-  if ( StatusN1 == 0 || StatusN1 == 2){
-    document.getElementById("from-net01-label").style.color = "#0001022d";
-    document.getElementById("from-net01").disabled=true;
-  }else{
-    document.getElementById("from-net01-label").style.color = "#000000";
-    document.getElementById("from-net01").disabled=false;
+function ModalNetChageValues(NetFrom , NetTo){
+    data[NetTo].initialHours = data[NetFrom].initialHours;
+    data[NetTo].initialMinutes = data[NetFrom].initialMinutes;
+    data[NetTo].initialSeconds = data[NetFrom].initialSeconds;
+    data[NetTo].finalHours = data[NetFrom].finalHours;
+    data[NetTo].finalMinutes = data[NetFrom].finalMinutes; 
+    data[NetTo].finalSeconds = data[NetFrom].finalSeconds;
+    data[NetTo].status = data[NetFrom].status;
+    data[NetTo].NofPrint = data[NetFrom].NofPrint;
+    data[NetTo].NofColor = data[NetFrom].NofColor;
+    data[NetTo].NofScan = data[NetFrom].NofScan;
+    data[NetTo].NofAdd = data[NetFrom].NofAdd;
+    data[NetTo].netFinalValue = data[NetFrom].netFinalValue;
+    data[NetTo].finalValue = data[NetFrom].finalValue;  
+    NetFrom = NetFrom + 1;
+    NetTo = NetTo + 1;
+    ModalNetReset(NetFrom, NetTo);
+}
+
+function ModalNetReset(NetFrom , NetTo){
+  for (let i = 0; i < UsageLog.length; i++) {
+    if (UsageLog[i].origin == NetFrom && UsageLog[i].closedHour == 0) {
+      UsageLog[i].origin = NetTo;
+      console.log("Trocado");
+      console.log(UsageLog);
+      break;
+    }
   }
-
-  if ( StatusN2 == 0 || StatusN2 == 2){
-    document.getElementById("from-net02-label").style.color = "#0001022d";
-    document.getElementById("from-net02").disabled=true;
-  }else{
-    document.getElementById("from-net02-label").style.color = "#000000";
-    document.getElementById("from-net02").disabled=false;
-  }
-
-  if ( StatusN3 == 0 || StatusN3 == 2){
-    document.getElementById("from-net03-label").style.color = "#0001022d";
-    document.getElementById("from-net03").disabled=true;
-  }else{
-    document.getElementById("from-net03-label").style.color = "#000000";
-    document.getElementById("from-net03").disabled=false;
-  }
-  
-  if ( StatusN1 == 1 || StatusN1 == 2){
-    document.getElementById("to-net01-label").style.color = "#0001022d";
-    document.getElementById("to-net01").disabled=true;
-  }else{
-    document.getElementById("to-net01-label").style.color = "#000000";
-    document.getElementById("to-net01").disabled=false;
-  }
-
-  if ( StatusN2 == 1 || StatusN2 == 2){
-    document.getElementById("to-net02-label").style.color = "#0001022d";
-    document.getElementById("to-net02").disabled=true;
-  }else{
-    document.getElementById("to-net02-label").style.color = "#000000";
-    document.getElementById("to-net02").disabled=false;
-  }
-
-  if ( StatusN3 == 1 || StatusN3 == 2){
-    document.getElementById("to-net03-label").style.color = "#0001022d";
-    document.getElementById("to-net03").disabled=true;
-  }else{
-    document.getElementById("to-net03-label").style.color = "#000000";
-    document.getElementById("to-net03").disabled=false;
-  }
-}
-
-var ModalNet01 = document.getElementById("ModalNet01");
-
-function CloseModalNet01(){
-  ModalNet01.style.display = "none";
-}
-
-function OpenModalNet01(){
-  ModalNet01.style.display = "block";
-}
-
-function registerInitialUsageN1() {
-  const InitialList = document.getElementById('InitialListN1');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
-  InitialList.appendChild(listItem);
-}
-
-function registerFinalUsageN1() {
-  const FinalList = document.getElementById('FinalListN1');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
-  FinalList.appendChild(listItem);
-  registerFinalUsageValueN1();
-}
-
-function registerFinalUsageValueN1() {
-  const FinalListValue = document.getElementById('FinalListValueN1');
-  const listItem = document.createElement('li');
-  listItem.textContent = `R$${parseFloat(FinalValueN1).toFixed(2)}`;      
-  FinalListValue.appendChild(listItem);
-}
-
-var ModalNet02 = document.getElementById("ModalNet02");
-
-function CloseModalNet02(){
-  ModalNet02.style.display = "none";
-}
-
-function OpenModalNet02(){
-  ModalNet02.style.display = "block";
-}
-
-function registerInitialUsageN2() {
-  const InitialList = document.getElementById('InitialListN2');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
-  InitialList.appendChild(listItem);
-}
-
-function registerFinalUsageN2() {
-  const FinalList = document.getElementById('FinalListN2');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
-  FinalList.appendChild(listItem);
-  registerFinalUsageValueN2();
-}
-
-function registerFinalUsageValueN2() {
-  const FinalListValue = document.getElementById('FinalListValueN2');
-  const listItem = document.createElement('li');
-  listItem.textContent = `R$${parseFloat(FinalValueN2).toFixed(2)}`;      
-  FinalListValue.appendChild(listItem);
-}
-
-var ModalNet03 = document.getElementById("ModalNet03");
-
-function CloseModalNet03(){
-  ModalNet03.style.display = "none";
-}
-
-function OpenModalNet03(){
-  ModalNet03.style.display = "block";
-}
-
-function registerInitialUsageN3() {
-  const InitialList = document.getElementById('InitialListN3');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Entrada: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;
-  InitialList.appendChild(listItem);
-}
-
-function registerFinalUsageN3() {
-  const FinalList = document.getElementById('FinalListN3');
-  const listItem = document.createElement('li');
-  listItem.textContent = `Saída: ${Hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Minute.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:${Second.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`;      
-  FinalList.appendChild(listItem);
-  registerFinalUsageValueN3();
-}
-
-function registerFinalUsageValueN3() {
-  const FinalListValue = document.getElementById('FinalListValueN3');
-  const listItem = document.createElement('li');
-  listItem.textContent = `R$${parseFloat(FinalValueN2).toFixed(2)}`;      
-  FinalListValue.appendChild(listItem);
+  document.getElementById('i_hour_net0' + NetTo.toString()).innerText = (data[(NetTo - 1)].initialHours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_minute_net0' + NetTo.toString()).innerText = (data[(NetTo - 1)].initialMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById('i_second_net0' + NetTo.toString()).innerText = (data[(NetTo - 1)].initialSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+  document.getElementById("btn-stop-n" + NetFrom.toString()).style.visibility = "hidden";
+  document.getElementById("btn-start-n" + NetTo.toString()).style.visibility = "hidden";
+  if(data[(NetTo-1)].status == 1){document.getElementById("btn-stop-n" + NetTo.toString()).style.visibility = "visible";}
+  else{document.getElementById("btn-reset-n" + NetTo.toString()).style.visibility = "visible";}
+  Reset(NetFrom);
 }
