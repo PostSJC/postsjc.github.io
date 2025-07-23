@@ -485,6 +485,7 @@ function ModalNetChageValues(NetFrom , NetTo){
     data[NetTo].NofAdd = data[NetFrom].NofAdd;
     data[NetTo].netFinalValue = data[NetFrom].netFinalValue;
     data[NetTo].finalValue = data[NetFrom].finalValue;  
+    data[NetTo].NofAdd = data[NetFrom].NofAdd;  
     NetFrom = NetFrom + 1;
     NetTo = NetTo + 1;
     ModalNetReset(NetFrom, NetTo);
@@ -494,8 +495,6 @@ function ModalNetReset(NetFrom , NetTo){
   for (let i = 0; i < UsageLog.length; i++) {
     if (UsageLog[i].origin == NetFrom && UsageLog[i].closedHour == 0) {
       UsageLog[i].origin = NetTo;
-      console.log("Trocado");
-      console.log(UsageLog);
       break;
     }
   }
@@ -504,6 +503,7 @@ function ModalNetReset(NetFrom , NetTo){
   document.getElementById('i_second_net0' + NetTo.toString()).innerText = (data[(NetTo - 1)].initialSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   document.getElementById("btn-stop-n" + NetFrom.toString()).style.visibility = "hidden";
   document.getElementById("btn-start-n" + NetTo.toString()).style.visibility = "hidden";
+  document.getElementById('input_value-n' + NetTo.toString()).value = (data[(NetTo -1)].NofAdd);
   if(data[(NetTo-1)].status == 1){document.getElementById("btn-stop-n" + NetTo.toString()).style.visibility = "visible";}
   else{document.getElementById("btn-reset-n" + NetTo.toString()).style.visibility = "visible";}
   Reset(NetFrom);
