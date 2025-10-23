@@ -84,26 +84,52 @@ function Countdown(){
   Timer(3);
 }
 
+function calculateTimeDifference(startTimeStr, endTimeStr) {
+  const now = new Date();
+  const startParts = startTimeStr.split(':');
+  const endParts = endTimeStr.split(':');
+
+  const startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 
+                            parseInt(startParts[0]), parseInt(startParts[1]));
+  const endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 
+                          parseInt(endParts[0]), parseInt(endParts[1]));
+
+  const diffMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+  const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
+  const hours = Math.floor(diffMinutes / 60);
+  const minutes = diffMinutes % 60;
+
+  return { hours, minutes };
+}
+
 function Timer(NetID){
   const NetAcc = getNet(NetID);
   var N3 = new Date(); 
-  var Hour = N3.getHours();
-  var Minute = N3.getMinutes();
-  var Second = N3.getSeconds();
-  var AddValue = document.getElementById('input_value-n' + NetID.toString()).value;
+  const Hour = N3.getHours();
+  const Minute = N3.getMinutes();
+  const Second = N3.getSeconds();
+  N3 = Hour + ":" + Minute;
+  
+  const time2 = NetAcc.initialHours + ":" + NetAcc.initialMinutes;
+  const time1 = N3;
+  const result = calculateTimeDifference(time1, time2);
+  
+//   var Hour = N3.getHours();
+//   var Minute = N3.getMinutes();
+//   var AddValue = document.getElementById('input_value-n' + NetID.toString()).value;
 
-  if (AddValue >= 0){
-    NetAcc.NofAdd = parseFloat(AddValue);
-    RefreshValue(NetID);
-    if (AddValue == ""){
-      NetAcc.NofAdd = 0;
-      RefreshValue(NetID);
-    }
-  }
-  else{
-    document.getElementById('input_value-n' + NetID.toString()).value = 0;
-    toastr.error('Este campo não aceita números negativos');
-  }
+//   if (AddValue >= 0){
+//     NetAcc.NofAdd = parseFloat(AddValue);
+//     RefreshValue(NetID);
+//     if (AddValue == ""){
+//       NetAcc.NofAdd = 0;
+//       RefreshValue(NetID);
+//     }
+//   }
+//   else{
+//     document.getElementById('input_value-n' + NetID.toString()).value = 0;
+//     toastr.error('Este campo não aceita números negativos');
+//   }
 
   if (NetAcc.status == 1){
     var hourCost = 0;
@@ -123,13 +149,23 @@ function Timer(NetID){
     document.getElementById('f_minute_net0' + NetID.toString()).innerText = (NetAcc.finalMinutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     document.getElementById('f_second_net0' + NetID.toString()).innerText = (NetAcc.finalSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 
+    // NetAcc.NofAdd = document.getElementById('input_value-n' + NetID.toString()).value;
+    var NofAdd = document.getElementById('input_value-n' + NetID.toString()).value;
+    NetAcc.NofAdd = parseFloat(NofAdd);
+    if(NofAdd == ""){
+      NetAcc.NofAdd = 0;
+      document.getElementById('input_value-n' + NetID.toString()).value = 0;
+    }
+
     var SumServices = 
       (NetAcc.NofPrint * ValuePrint) + 
       (NetAcc.NofColor * ValueColor) + 
-      (NetAcc.NofScan * ValueScan)
+      (NetAcc.NofScan * ValueScan) +
+      NetAcc.NofAdd
     ;
     NetAcc.netFinalValue = hourCost + minutsCost;
-    NetAcc.finalValue = SumServices + NetAcc.NofAdd + NetAcc.netFinalValue;
+    NetAcc.finalValue = SumServices + NetAcc.netFinalValue;
+    console.log(NetAcc.NofAdd);
 
     document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ " + 
       parseFloat(NetAcc.finalValue).toFixed(2)
@@ -503,8 +539,14 @@ function ModalNetReset(NetFrom , NetTo){
   document.getElementById('i_second_net0' + NetTo.toString()).innerText = (data[(NetTo - 1)].initialSeconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
   document.getElementById("btn-stop-n" + NetFrom.toString()).style.visibility = "hidden";
   document.getElementById("btn-start-n" + NetTo.toString()).style.visibility = "hidden";
-  document.getElementById('input_value-n' + NetTo.toString()).value = (data[(NetTo -1)].NofAdd);
+  document.getElementById('input_value-n' + NetTo.toString()).value = (data[(NetTo - 1)].NofAdd);
   if(data[(NetTo-1)].status == 1){document.getElementById("btn-stop-n" + NetTo.toString()).style.visibility = "visible";}
   else{document.getElementById("btn-reset-n" + NetTo.toString()).style.visibility = "visible";}
   Reset(NetFrom);
+  RefreshValue(NetTo);
 }
+
+
+// ToDo - Zerar seleção do modal rearrange
+
+

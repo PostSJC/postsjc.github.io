@@ -29,7 +29,9 @@
                 <span id="i_hour_net01">00</span>:<span id="i_minute_net01">00</span>:<span id="i_second_net01">00</span> 
             </div>
             <div class="component-net--now">
-                <span id="f_hour_net01">00</span>:<span id="f_minute_net01">00</span>:<span id="f_second_net01">00</span>       
+                <span id="f_hour_net01">00</span>:<span id="f_minute_net01">00</span>
+                <!-- : -->
+                <span id="f_second_net01" hidden>00</span>       
             </div>
             <div class="divider"></div>
             <div class="component-net--services">
@@ -103,7 +105,9 @@
                 <span id="i_hour_net02">00</span>:<span id="i_minute_net02">00</span>:<span id="i_second_net02">00</span> 
             </div>
             <div class="component-net--now">
-                <span id="f_hour_net02">00</span>:<span id="f_minute_net02">00</span>:<span id="f_second_net02">00</span>       
+                <span id="f_hour_net02">00</span>:<span id="f_minute_net02">00</span>
+                <!-- : -->
+                <span id="f_second_net02" hidden>00</span>       
             </div>
             <div class="divider"></div>
             <div class="component-net--services">
@@ -174,7 +178,9 @@
                 <span id="i_hour_net03">00</span>:<span id="i_minute_net03">00</span>:<span id="i_second_net03">00</span> 
             </div>
             <div class="component-net--now">
-                <span id="f_hour_net03">00</span>:<span id="f_minute_net03">00</span>:<span id="f_second_net03">00</span>       
+                <span id="f_hour_net03">00</span>:<span id="f_minute_net03">00</span>
+                <!-- : -->
+                <span id="f_second_net03" hidden>00</span>       
             </div>
             <div class="divider"></div>
             <div class="component-net--services">
@@ -460,11 +466,11 @@
 		});
 	</script>
     <script src="./js/ControladorNets.js"></script>
-    <SCRIPt>
+    <!-- <SCRIPt>
         window.onbeforeunload = function(e) {
             return 'Tem a certeza que quer fechar a janela?';
         };
-    </SCRIPt>
+    </SCRIPt> -->
 </body>
 </html>
 
@@ -479,4 +485,8 @@
         Fazer            - Garantir que o confirmar fechamento de guia esta OK
         Bug              - rastreio do icone do modal Rearrange .menu-icon
         Fazer            - Manual para Altera~]ao de preços futuros
+
+        quando vira a hroa nao ta marcando o valor adicional da hora 
+        ex 1h15 ta dando 5 reais so 
+        
 -->
