@@ -165,7 +165,6 @@ function Timer(NetID){
     ;
     NetAcc.netFinalValue = hourCost + minutsCost;
     NetAcc.finalValue = SumServices + NetAcc.netFinalValue;
-    console.log(NetAcc.NofAdd);
 
     document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ " + 
       parseFloat(NetAcc.finalValue).toFixed(2)
