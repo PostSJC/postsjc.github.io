@@ -448,6 +448,33 @@ footer a:visited{
     -ms-user-select: none;
 }
 
+.running-clock{
+    position: absolute;
+    visibility: hidden;
+    height: 1rem;
+    width: 1rem;
+    top: 257px; 
+    right: 80px;  
+    background-image: url(../icons/Clock-animation/1.svg);
+    background-size: cover;
+    animation-name: clock-animation;
+    animation-duration: 5s;
+    transition: none;
+    animation-iteration-count: infinite;
+}
+
+@keyframes clock-animation {
+    0%  {background-image: url(../icons/Clock-animation/1.svg);}
+    12.5% {background-image: url(../icons/Clock-animation/2.svg);}
+    25% {background-image: url(../icons/Clock-animation/3.svg);}
+    37.5% {background-image: url(../icons/Clock-animation/4.svg);}
+    50% {background-image: url(../icons/Clock-animation/5.svg);}
+    62.5% {background-image: url(../icons/Clock-animation/6.svg);}
+    75% {background-image: url(../icons/Clock-animation/7.svg);}
+    87.5% {background-image: url(../icons/Clock-animation/8.svg);}
+    100% {background-image: url(../icons/Clock-animation/1.svg);}
+}
+
 @media screen and (max-width: 1040px) {}
 
 @media screen and (max-width: 800px) {

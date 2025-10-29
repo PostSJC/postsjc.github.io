@@ -165,6 +165,7 @@ function Timer(NetID){
     ;
     NetAcc.netFinalValue = hourCost + minutsCost;
     NetAcc.finalValue = SumServices + NetAcc.netFinalValue;
+    console.log(NetAcc.NofAdd);
 
     document.getElementById('final-value-N' + NetID.toString()).innerText = ("R$ " + 
       parseFloat(NetAcc.finalValue).toFixed(2)
@@ -189,6 +190,7 @@ function Start(NetID){
 
   document.getElementById("btn-start-n" + NetID.toString()).style.visibility = "hidden";
   document.getElementById("btn-stop-n" + NetID.toString()).style.visibility = "visible";
+  document.getElementById("running-clock_net0" + NetID.toString()).style.visibility = "visible";
 
   RegisterLog(NetID);
 }
@@ -219,6 +221,7 @@ function Stop(NetID) {
   document.getElementById("btn-reset-n" + NetID.toString()).disabled = true;
   document.getElementById("btn-reset-n" + NetID.toString()).style.opacity = 0.5;
   toastr.success('Tempo do NET0' + NetID.toString() + '- Encerrado');
+  document.getElementById("running-clock_net0" + NetID.toString()).style.visibility = "hidden";
 
   setTimeout(function(){ 
     document.getElementById("btn-reset-n" + NetID.toString()).style.opacity = 1;
